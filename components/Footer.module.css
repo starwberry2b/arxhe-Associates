@@ -17,6 +17,15 @@
   margin-bottom: 2rem;
 }
 
+/* 全局 p{max-width:720px} 会把段落盒子压窄并靠左，
+   必须 margin-inline:auto 让盒子在居中容器内居中 */
+.brandName,
+.tagline,
+.slogan,
+.affiliation {
+  margin-inline: auto;
+}
+
 .brandName {
   font-size: var(--fs-card-title);
   font-weight: var(--font-weight-heading);

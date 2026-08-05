@@ -119,3 +119,76 @@ p {
   white-space: nowrap;
   border: 0;
 }
+
+/* ============================================================
+   HeroBackdrop 地籍图母题 — 克制动效（CLAUDE.md §3.5）
+   一次性描边绘入 + 极低幅呼吸，不使用位移/粒子
+   ============================================================ */
+
+/* 背景定位（从组件内联样式移出，便于移动端媒体查询覆盖） */
+.arxhe-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 金色宗地边界：加载时一次性描边绘入 */
+.arxhe-parcel-draw {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  animation: arxheParcelDraw 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+
+@keyframes arxheParcelDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 金色宗地整体：极低幅呼吸（透明度微动） */
+.arxhe-parcel-breath {
+  animation: arxheParcelBreath 7s ease-in-out 2.2s infinite;
+}
+
+@keyframes arxheParcelBreath {
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+
+/* 宗地中心节点光环：缓慢脉冲 */
+.arxhe-node-pulse {
+  opacity: 0.3;
+  animation: arxheNodePulse 3.5s ease-in-out infinite;
+}
+
+@keyframes arxheNodePulse {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.6; }
+}
+
+/* 移动端：加宽画布并左移，让金色宗地落入手机视口右中部；
+   整体降透明度避免线条穿过正文干扰阅读；
+   隐藏地籍文字标注避免与小屏正文争抢 */
+@media (max-width: 767px) {
+  .arxhe-hero-backdrop--hero {
+    width: 250%;
+    left: -174%;
+    opacity: 0.55;
+  }
+
+  .arxhe-map-label {
+    display: none;
+  }
+}
+
+/* 尊重系统减少动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .arxhe-parcel-draw,
+  .arxhe-parcel-breath,
+  .arxhe-node-pulse {
+    animation: none;
+  }
+  .arxhe-parcel-draw {
+    stroke-dashoffset: 0;
+  }
+}

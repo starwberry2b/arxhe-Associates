@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { useLang } from '@/lib/i18n';
 import { HOME } from '@/lib/translations';
 import RevealSection from '@/components/RevealSection';
+import HeroBackdrop from '@/components/HeroBackdrop';
 import { ADVANTAGE_ICONS } from '@/components/icons';
 import styles from './page.module.css';
 
@@ -13,9 +14,9 @@ import styles from './page.module.css';
  * 支持中英双语切换
  */
 
-/** 将 `·` 分隔的字符串拆分为可插 <br/> 的片段 */
+/** 将中点分隔的字符串拆分为可插 <br/> 的片段（兼容 · 与 ・ 两种中点字符） */
 function splitByDot(text: string): string[] {
-  return text.split('·').map((s) => s.trim());
+  return text.split(/[·・]/).map((s) => s.trim());
 }
 
 export default function HomePage() {
@@ -33,11 +34,8 @@ export default function HomePage() {
           板块1 · 首屏主视觉 Hero（无需 Reveal，自带 fadeIn）
           ================================================================ */}
       <section className={styles.hero}>
-        {/* 四角测绘标记 */}
-        <div className={`${styles.gridMark} ${styles.topLeft}`} aria-hidden="true" />
-        <div className={`${styles.gridMark} ${styles.topRight}`} aria-hidden="true" />
-        <div className={`${styles.gridMark} ${styles.bottomLeft}`} aria-hidden="true" />
-        <div className={`${styles.gridMark} ${styles.bottomRight}`} aria-hidden="true" />
+        {/* 抽象地籍图母题背景（含金色高亮宗地） */}
+        <HeroBackdrop />
 
         <div className={styles.heroContent}>
           <p className={styles.brandTag}>{t(HOME.hero.brandTag)}</p>
@@ -55,7 +53,7 @@ export default function HomePage() {
             {footerParts.map((part, i) => (
               <Fragment key={i}>
                 {i > 0 && <span className={styles.heroFooterSep}>·</span>}
-                {part}
+                <span className={styles.heroFooterItem}>{part}</span>
               </Fragment>
             ))}
           </p>
@@ -113,8 +111,10 @@ export default function HomePage() {
           板块4 · 品牌理念 — 智慧放大器
           ================================================================ */}
       <section className={styles.philosophy}>
+        {/* 复用地籍母题（淡雅版），与 Hero 视觉统一 */}
+        <HeroBackdrop variant="quiet" />
         <RevealSection>
-          <div className={styles.sectionInner}>
+          <div className={`${styles.sectionInner} ${styles.philosophyInner}`}>
             <h2 className={styles.philosophyTitle}>{t(HOME.philosophy.title)}</h2>
             <span className={`${styles.divider} ${styles.dividerGold}`} aria-hidden="true" />
             <p className={styles.philosophyBody}>{t(HOME.philosophy.body)}</p>
