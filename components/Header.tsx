@@ -40,6 +40,9 @@ export default function Header() {
   const toggleMenu = useCallback(() => setMenuOpen((p) => !p), []);
 
   const isHome = pathname === '/';
+  /* 全站浅色科技奢华风 → 所有页面统一浅色模式 */
+  const lightMode = true;
+  const logoSrc = '/logo-standard.svg';
 
   /* 导航项（使用翻译文案） */
   const navItems = [
@@ -65,13 +68,13 @@ export default function Header() {
   return (
     <>
       <header
-        className={`${styles.header} ${scrolled || !isHome ? styles.sticky : styles.transparent}`}
+        className={`${styles.header} ${lightMode ? styles.light : ''} ${scrolled ? (lightMode ? styles.lightScrolled : styles.sticky) : (lightMode ? styles.lightTransparent : styles.transparent)}`}
       >
         <div className={styles.inner}>
-          {/* 品牌 Logo（深色背景 → 白色款） */}
+          {/* 品牌 Logo（浅色模式 → 彩色款；深色模式 → 白色款） */}
           <Link href="/" className={styles.brand} aria-label={BRAND.name[lang]}>
             <Image
-              src="/logo-white.svg"
+              src={logoSrc}
               alt={BRAND.name[lang]}
               width={158}
               height={38}
@@ -112,7 +115,7 @@ export default function Header() {
       </header>
 
       {/* 移动端抽屉菜单 */}
-      <div className={`${styles.mobileDrawer} ${menuOpen ? styles.mobileDrawerOpen : ''}`}>
+      <div className={`${styles.mobileDrawer} ${menuOpen ? styles.mobileDrawerOpen : ''} ${lightMode ? styles.mobileDrawerLight : ''}`}>
         <nav className={styles.mobileNavList}>
           {renderNavLinks()}
           <button

@@ -1,4 +1,5 @@
 /* /investor — 投资人合作（CLAUDE.md §6.6）
+   对齐首页「浅色科技奢华风」：暖珠光底 · 精致卡片 · 金色点缀
    含表单校验、成功反馈 */
 
 /* ---- 通用 ---- */
@@ -17,9 +18,10 @@
   color: var(--color-accent);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
+/* 双侧对称装饰线 */
 .sectionTag::before,
 .sectionTag::after {
   content: '';
@@ -30,7 +32,10 @@
   opacity: 0.5;
 }
 
-/* ---- 板块2 · 合作前言 ---- */
+/* ============================================================
+   板块2 · 合作前言（纯白）
+   ============================================================ */
+
 .intro {
   background-color: #ffffff;
 }
@@ -50,15 +55,20 @@
   margin: 0 auto;
 }
 
+/* 首句引言：放大加深，与首页 introText:first-child 对齐 */
 .lead {
   font-size: 1.375rem;
   line-height: 1.6;
-  color: var(--color-dark-gray);
+  color: var(--color-primary);
+  font-weight: 500;
 }
 
-/* ---- 板块3 · 合作方向 ---- */
+/* ============================================================
+   板块3 · 合作方向（暖珠光底 + 高级卡片）
+   ============================================================ */
+
 .directions {
-  background-color: var(--color-bg-light);
+  background-color: #F5F4F0;
 }
 
 .directionList {
@@ -67,33 +77,58 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
   text-align: left;
-  max-width: 900px;
 }
 
+/* 方向卡 — 白底 + 精致阴影 + 顶部金线（对齐首页 .card） */
 .directionList li {
   position: relative;
-  padding: 1.25rem 1.25rem 1.25rem 2rem;
+  padding: 1.75rem 1.5rem;
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  font-size: var(--fs-caption);
-  line-height: 1.5;
-  color: var(--color-dark-gray);
+  border: 1px solid rgba(0, 60, 96, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
+  font-size: var(--fs-card-title);
+  line-height: var(--line-height-heading);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+/* 顶部金线：默认半透明收起，hover 展开 */
 .directionList li::before {
   content: '';
   position: absolute;
-  left: 0.875rem;
-  top: 1.5rem;
-  width: 5px;
-  height: 5px;
-  background-color: var(--color-accent);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
+  transform: scaleX(0.3);
+  transform-origin: left;
+  opacity: 0.5;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
 
-/* ---- 板块4 · 表单 ---- */
+@media (hover: hover) {
+  .directionList li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
+    border-color: rgba(184, 147, 58, 0.35);
+  }
+
+  .directionList li:hover::before {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   板块4 · 预约表单（纯白）
+   ============================================================ */
+
 .formSection {
   background-color: #ffffff;
 }
@@ -151,7 +186,7 @@
   font-family: var(--font-family);
   color: var(--color-dark-gray);
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 60, 96, 0.15);
   border-radius: 4px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
@@ -163,7 +198,7 @@
 }
 
 .input::placeholder {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 60, 96, 0.3);
 }
 
 .inputError {
@@ -191,7 +226,7 @@
   margin-top: 0.125rem;
 }
 
-/* 提交按钮 */
+/* 提交按钮 — 金底 + hover 升起 + 金色辉光（对齐首页 CTA） */
 .submitBtn {
   display: inline-flex;
   align-items: center;
@@ -207,31 +242,35 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .submitBtn:hover {
   background-color: #7A6335;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184, 147, 58, 0.3);
 }
 
-/* ---- 响应式 ---- */
+/* ============================================================
+   响应式
+   ============================================================ */
+
 @media (max-width: 767px) {
   .sectionInner {
     padding: var(--section-padding-y-mobile) 1.25rem;
   }
 
   .lead {
-    font-size: 1.125rem;
+    font-size: 1.1875rem;
   }
 
   .directionList {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .directionList li {
-    padding: 1rem 1rem 1rem 1.75rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .form {

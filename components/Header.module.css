@@ -21,6 +21,72 @@
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+/* ---- 浅色模式（首页浅色 Hero）---- */
+.lightTransparent {
+  background-color: transparent;
+}
+
+.lightScrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 0 rgba(0, 60, 96, 0.07), 0 4px 24px rgba(0, 60, 96, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 浅色模式：导航链接深色字 */
+.light .navLink {
+  color: rgba(0, 60, 96, 0.68);
+}
+
+.light .navLink:hover {
+  color: #003C60;
+  background-color: rgba(0, 60, 96, 0.05);
+}
+
+.light .active {
+  color: var(--color-accent);
+}
+
+.light .active:hover {
+  color: var(--color-accent);
+}
+
+/* 浅色模式：语言切换按钮 */
+.light .langToggle {
+  color: rgba(0, 60, 96, 0.65);
+  border-color: rgba(0, 60, 96, 0.18);
+}
+
+.light .langToggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background-color: rgba(184, 147, 58, 0.08);
+}
+
+/* 浅色模式：汉堡按钮深色线 */
+.light .hamburger span {
+  background-color: #003C60;
+}
+
+/* 浅色模式：移动端抽屉白底深字 */
+.mobileDrawerLight {
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
+.mobileDrawerLight .navLink {
+  color: rgba(0, 60, 96, 0.8);
+}
+
+.mobileDrawerLight .navLink:hover {
+  color: var(--color-accent);
+  background-color: rgba(0, 60, 96, 0.04);
+}
+
+.mobileDrawerLight .langToggle {
+  color: rgba(0, 60, 96, 0.65);
+  border-color: rgba(0, 60, 96, 0.18);
+}
+
 .inner {
   max-width: 1200px;
   width: 100%;

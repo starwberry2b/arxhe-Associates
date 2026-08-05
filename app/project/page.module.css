@@ -1,4 +1,6 @@
-/* /project — 标杆项目 Ripley View（CLAUDE.md §6.5） */
+/* /project — 标杆项目 Ripley View（CLAUDE.md §6.5）
+   浅色科技奢华风 — 与首页视觉系统对齐
+   暖珠光板块 · 精致卡片 · 金色顶线 · 深蓝径向总结区 */
 
 /* ---- 通用 ---- */
 .sectionInner {
@@ -19,6 +21,7 @@
   margin-bottom: 2rem;
 }
 
+/* 双侧对称装饰线 — 与首页一致 */
 .sectionTag::before,
 .sectionTag::after {
   content: '';
@@ -41,7 +44,7 @@
   margin: 0 auto;
 }
 
-/* KPI 大字 */
+/* KPI 大字 — 金色点缀，与首页 accent 同色系 */
 .kpi {
   margin-top: 2.5rem;
 }
@@ -54,9 +57,9 @@
   line-height: 1.2;
 }
 
-/* ---- 板块3 · 核心创新 ---- */
+/* ---- 板块3 · 核心创新（暖珠光底 + 高级卡片）---- */
 .innovations {
-  background-color: var(--color-bg-light);
+  background-color: #F5F4F0;
 }
 
 .innovationGrid {
@@ -66,19 +69,59 @@
   text-align: left;
 }
 
+/* RevealSection 包装 div → flex 容器，卡片撑满等高 */
+.innovationGrid > * {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 创新卡片 — 白底 + 精致阴影 + 顶部金线 */
 .innovationItem {
   position: relative;
+  flex: 1;
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  padding: 2rem 1.75rem;
+  border: 1px solid rgba(0, 60, 96, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
+  padding: 2.5rem 1.75rem;
   font-size: var(--fs-body);
   line-height: var(--line-height-body);
   color: var(--color-text-body);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* 顶部金线：默认半透明收起，hover 展开 */
+.innovationItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
+  transform: scaleX(0.3);
+  transform-origin: left;
+  opacity: 0.5;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+@media (hover: hover) {
+  .innovationItem:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
+    border-color: rgba(184, 147, 58, 0.35);
+  }
+
+  .innovationItem:hover::before {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 .innovationIndex {
   display: block;
   font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.15em;
   color: var(--color-accent);
   margin-bottom: 0.75rem;
@@ -92,7 +135,7 @@
 .locationIntro {
   font-size: var(--fs-body);
   line-height: var(--line-height-body);
-  color: var(--color-dark-gray);
+  color: var(--color-primary);
   margin: 0 auto 1.5rem;
   text-align: left;
 }
@@ -130,14 +173,14 @@
 .locationOutro {
   font-size: var(--fs-caption);
   line-height: var(--line-height-body);
-  color: var(--color-text-body);
+  color: var(--color-primary);
   margin: 0 auto;
   text-align: left;
 }
 
-/* ---- 板块5 · 生态保育 ---- */
+/* ---- 板块5 · 生态保育（暖珠光底）---- */
 .ecology {
-  background-color: var(--color-bg-light);
+  background-color: #F5F4F0;
 }
 
 .ecologyText {
@@ -166,10 +209,17 @@
   margin: 0 auto 1rem;
 }
 
-/* ---- 板块7 · 价值总结 ---- */
+/* ---- 板块7 · 价值总结（深蓝径向渐变 — 浅色页面中的戏剧性暗调）---- */
 .summary {
-  background-color: var(--color-primary);
+  position: relative;
+  background: radial-gradient(ellipse 80% 90% at 50% 50%, #0A4A72 0%, var(--color-primary) 60%, var(--color-primary-deep) 100%);
+  overflow: hidden;
   color: #ffffff;
+}
+
+.summary .sectionInner {
+  position: relative;
+  z-index: 1;
 }
 
 .summaryText {
@@ -186,7 +236,18 @@
   margin: 0 auto;
 }
 
-/* ---- 响应式 ---- */
+/* ---- 平板端（768–1199px）---- */
+@media (max-width: 1024px) {
+  .innovationItem {
+    padding: 2.25rem 1.5rem 2rem;
+  }
+
+  .innovationGrid {
+    gap: 1.5rem;
+  }
+}
+
+/* ---- 移动端（< 768px）---- */
 @media (max-width: 767px) {
   .sectionInner {
     padding: var(--section-padding-y-mobile) 1.25rem;
@@ -195,6 +256,10 @@
   .innovationGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .innovationItem {
+    padding: 2.25rem 1.5rem 2rem;
   }
 
   .kpiValue {

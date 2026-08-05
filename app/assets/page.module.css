@@ -1,13 +1,51 @@
-/* /assets — 核心资产矩阵（CLAUDE.md §6.4） */
+/* ============================================================
+   /assets — 核心资产矩阵（CLAUDE.md §6.4）
+   浅色科技奢华风 · 暖珠光底 · 金色点缀 · 高级卡片
+   ============================================================ */
 
-.assets {
-  background-color: var(--color-bg-light);
-}
-
+/* ---- 通用 ---- */
 .sectionInner {
   max-width: 1120px;
   margin: 0 auto;
   padding: var(--section-padding-y) 2rem;
+  text-align: center;
+}
+
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* 双侧对称装饰线 */
+.sectionTag::before,
+.sectionTag::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent);
+  opacity: 0.5;
+}
+
+.sectionTitle {
+  font-size: var(--fs-h2);
+  color: var(--color-primary);
+  margin-bottom: 3.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   板块 · 2×2 资产卡片（暖珠光底 + 高级卡片）
+   ============================================================ */
+
+.assets {
+  background-color: #F5F4F0;
 }
 
 .grid2x2 {
@@ -15,17 +53,29 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--card-gap);
   text-align: left;
+  counter-reset: asset;
 }
 
+/* RevealSection 包装 div → flex 容器，卡片撑满等高 */
+.grid2x2 > * {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 卡片 — 白底 + 精致阴影 + 序号水印 + 顶部金线 */
 .card {
   position: relative;
+  flex: 1;
+  counter-increment: asset;
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 60, 96, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
   padding: 2.75rem 2rem 2.5rem;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+/* 顶部金线：默认半透明收起，hover 展开 */
 .card::before {
   content: '';
   position: absolute;
@@ -33,35 +83,41 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color-accent);
-  transform: scaleX(0);
+  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
+  transform: scaleX(0.3);
   transform-origin: left;
-  transition: transform 0.35s ease;
+  opacity: 0.5;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
 }
 
 @media (hover: hover) {
   .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(0, 60, 96, 0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
+    border-color: rgba(184, 147, 58, 0.35);
   }
+
   .card:hover::before {
     transform: scaleX(1);
+    opacity: 1;
   }
 }
 
+/* 序号水印（01 / 02 / 03 / 04） */
 .cardIndex {
   position: absolute;
   top: 1.25rem;
   right: 1.5rem;
   font-size: 0.8125rem;
   letter-spacing: 0.15em;
-  color: rgba(0, 60, 96, 0.15);
+  color: rgba(0, 60, 96, 0.13);
+  font-weight: 600;
 }
 
 .cardTitle {
   font-size: var(--fs-card-title);
   font-weight: var(--font-weight-heading);
-  color: var(--color-dark-gray);
+  color: var(--color-primary);
   line-height: var(--line-height-heading);
   margin-bottom: 1rem;
   letter-spacing: 0.02em;
@@ -73,10 +129,31 @@
   color: var(--color-text-body);
 }
 
-/* ---- 响应式 ---- */
+/* ============================================================
+   平板端（768–1199px）
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .card {
+    padding: 2.25rem 1.5rem 2rem;
+  }
+
+  .grid2x2 {
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================================
+   移动端（< 768px）
+   ============================================================ */
+
 @media (max-width: 767px) {
   .sectionInner {
     padding: var(--section-padding-y-mobile) 1.25rem;
+  }
+
+  .sectionTitle {
+    margin-bottom: 2rem;
   }
 
   .grid2x2 {
@@ -85,6 +162,6 @@
   }
 
   .card {
-    padding: 2rem 1.5rem;
+    padding: 2.25rem 1.5rem 2rem;
   }
 }
