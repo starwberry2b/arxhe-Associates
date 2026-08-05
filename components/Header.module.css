@@ -31,18 +31,22 @@
   justify-content: space-between;
 }
 
-/* 品牌名 */
+/* 品牌 Logo */
 .brand {
-  font-size: 1rem;
-  font-weight: var(--font-weight-heading);
-  color: #ffffff;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
 }
 
 .brand:hover {
-  color: var(--color-accent);
+  opacity: 0.85;
+}
+
+.brandLogo {
+  height: 32px;
+  width: auto;
+  display: block;
+  max-width: none;
 }
 
 /* 桌面端导航区（导航 + 语言按钮） */
@@ -206,8 +210,8 @@
     padding: 0 1.25rem;
   }
 
-  .brand {
-    font-size: 0.9375rem;
+  .brandLogo {
+    height: 26px;
   }
 
   .desktopNav {

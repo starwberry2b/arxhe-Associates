@@ -19,18 +19,19 @@
 
 /* 全局 p{max-width:720px} 会把段落盒子压窄并靠左，
    必须 margin-inline:auto 让盒子在居中容器内居中 */
-.brandName,
 .tagline,
 .slogan,
 .affiliation {
   margin-inline: auto;
 }
 
-.brandName {
-  font-size: var(--fs-card-title);
-  font-weight: var(--font-weight-heading);
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+/* Footer Logo */
+.brandLogo {
+  height: 36px;
+  width: auto;
+  max-width: none;
+  display: block;
+  margin: 0 auto 1rem;
 }
 
 .tagline {

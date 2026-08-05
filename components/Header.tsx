@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLang, useI18n } from '@/lib/i18n';
 import { NAV, BRAND, HEADER } from '@/lib/translations';
 import styles from './Header.module.css';
@@ -67,9 +68,16 @@ export default function Header() {
         className={`${styles.header} ${scrolled || !isHome ? styles.sticky : styles.transparent}`}
       >
         <div className={styles.inner}>
-          {/* 品牌名 */}
-          <Link href="/" className={styles.brand}>
-            {BRAND.name[lang]}
+          {/* 品牌 Logo（深色背景 → 白色款） */}
+          <Link href="/" className={styles.brand} aria-label={BRAND.name[lang]}>
+            <Image
+              src="/logo-white.svg"
+              alt={BRAND.name[lang]}
+              width={158}
+              height={38}
+              className={styles.brandLogo}
+              priority
+            />
           </Link>
 
           {/* 桌面端导航 + 语言切换 */}

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLang } from '@/lib/i18n';
 import { BRAND, FOOTER } from '@/lib/translations';
 import styles from './Footer.module.css';
@@ -16,7 +17,13 @@ export default function Footer() {
       <div className={styles.inner}>
         {/* 品牌 */}
         <div className={styles.brand}>
-          <p className={styles.brandName}>{BRAND.name[lang]}</p>
+          <Image
+            src="/logo-white.svg"
+            alt={BRAND.name[lang]}
+            width={158}
+            height={38}
+            className={styles.brandLogo}
+          />
           <p className={styles.tagline}>{FOOTER.tagline[lang]}</p>
           <p className={styles.slogan}>{FOOTER.slogan[lang]}</p>
         </div>
