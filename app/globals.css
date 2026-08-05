@@ -12,7 +12,7 @@
   --color-bg-light:   #F5F6F7;   /* 浅灰底：浅色区块背景 */
   --color-text-body:  #4D4948;   /* 正文灰（对齐 Logo 深灰暖调） */
   --color-text-sub:   #9F9E9F;   /* 次级文字（提取自 Logo 副文字色） */
-  --color-accent:     #8C7340;   /* 低饱和金：分割线、图标、按钮描边，少量点缀 */
+  --color-accent:     #B8943A;   /* 饱和金（提取自 Logo 金色基调 + 提饱和度）：分割线、图标、按钮 */
 
   /* ---- §3.2 字体 ---- */
   --font-family:      "Inter", "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
@@ -83,11 +83,11 @@ a, button, [role="button"] {
   }
 }
 
-/* 语义化标题层级 */
+/* 语义化标题层级 — 关键文字使用 Logo 蓝 */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-heading);
   line-height: var(--line-height-heading);
-  color: var(--color-dark-gray);
+  color: var(--color-primary);
 }
 
 h1 { font-size: var(--fs-h1); }

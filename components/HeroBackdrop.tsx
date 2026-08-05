@@ -1,24 +1,21 @@
 /**
  * HeroBackdrop — 抽象地籍图（Cadastral Map）背景母题
  *
- * 寓意体系：业务是土地资产 → 用「宗地边界线网」铺满首屏，
- * 一块宗地以低饱和金描边高亮，寓意「从土地储备池中
- * 发现并重构价值的那块土地」，直接视觉化品牌主张
- * 「重构土地价值边界」。
+ * 寓意：土地资产 → 宗地边界网格铺满首屏。
+ * 一块大面积宗地以金色描边高亮，视觉化「重构土地价值边界」。
  *
- * 风格约束（CLAUDE.md §3.5）：
- * - 低透明度线条，不喧宾夺主；金色仅细节点缀
- * - 动效克制：金色宗地一次性描边绘入 + 极低幅呼吸
- * - SVG 装饰元素必须显式 fill="none"（skill 避坑）
+ * v2 改进：直线网格 + 大区块 + 工整几何结构（无曲线/等高线）
  */
 
 interface HeroBackdropProps {
-  /** hero = 完整母题（含金色高亮宗地）；quiet = 仅淡雅线网（深色板块复用） */
   variant?: 'hero' | 'quiet';
 }
 
 export default function HeroBackdrop({ variant = 'hero' }: HeroBackdropProps) {
   const isHero = variant === 'hero';
+  const lineAlpha = isHero ? 0.07 : 0.04;
+  const roadAlpha = isHero ? 0.11 : 0.06;
+  const nodeAlpha = isHero ? 0.22 : 0.1;
 
   return (
     <svg
@@ -29,152 +26,145 @@ export default function HeroBackdrop({ variant = 'hero' }: HeroBackdropProps) {
       className={`arxhe-hero-backdrop arxhe-hero-backdrop--${variant}`}
     >
       <defs>
-        {/* 低饱和金渐变：宗地描边的微弱光泽 */}
         <linearGradient id="arxhe-gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8C7340" />
-          <stop offset="100%" stopColor="#B59A5F" />
+          <stop offset="0%" stopColor="#B8943A" />
+          <stop offset="100%" stopColor="#D4AF5A" />
         </linearGradient>
       </defs>
 
-      {/* ============ 基底宗地边界线网（极淡白线） ============ */}
-      <g
-        fill="none"
-        stroke="#FFFFFF"
-        strokeWidth="1"
-        opacity={isHero ? 0.07 : 0.05}
-      >
-        {/* 横向宗地边界 */}
-        <path d="M-40,150 L280,132 L560,168 L880,140 L1180,176 L1480,152" />
-        <path d="M-40,380 L240,404 L520,372 L840,398 L1140,368 L1480,396" />
-        <path d="M-40,620 L260,600 L540,636 L860,612 L1160,644 L1480,618" />
-        <path d="M-40,810 L320,830 L640,798 L980,826 L1480,800" />
+      {/* ============ 宗地网格（正交直线，大面积区块） ============ */}
+      <g fill="none" stroke="#FFFFFF" strokeWidth="1" opacity={lineAlpha}>
         {/* 纵向宗地边界 */}
-        <path d="M250,-40 L232,190 L268,430 L238,700 L258,940" />
-        <path d="M620,-40 L640,220 L610,470 L645,730 L625,940" />
-        <path d="M1010,-40 L990,210 L1022,480 L998,740 L1018,940" />
-        <path d="M1330,-40 L1348,260 L1322,540 L1350,940" />
+        <line x1="260" y1="-20" x2="260" y2="920" />
+        <line x1="580" y1="-20" x2="580" y2="920" />
+        <line x1="900" y1="-20" x2="900" y2="920" />
+        <line x1="1180" y1="-20" x2="1180" y2="920" />
+
+        {/* 横向宗地边界 */}
+        <line x1="-20" y1="220" x2="1460" y2="220" />
+        <line x1="-20" y1="480" x2="1460" y2="480" />
+        <line x1="-20" y1="720" x2="1460" y2="720" />
       </g>
 
-      {/* ============ 规划道路走廊（双线，略亮一级） ============ */}
+      {/* ============ 地块编号标注（网格交点处，地籍图惯例） ============ */}
       <g
         fill="none"
         stroke="#FFFFFF"
-        strokeWidth="1"
-        opacity={isHero ? 0.12 : 0.07}
+        strokeWidth="2"
+        opacity={nodeAlpha}
       >
-        <path d="M-40,900 L400,560 L860,330 L1480,120" />
-        <path d="M20,940 L460,600 L920,370 L1480,172" />
+        {[
+          [200, 170], [530, 170], [850, 170], [1130, 170],
+          [200, 430], [530, 430], [850, 430], [1130, 430],
+          [200, 670], [530, 670], [850, 670], [1130, 670],
+        ].map(([cx, cy]) => (
+          <g key={`${cx},${cy}`}>
+            <line x1={cx - 7} y1={cy} x2={cx + 7} y2={cy} />
+            <line x1={cx} y1={cy - 7} x2={cx} y2={cy + 7} />
+          </g>
+        ))}
       </g>
 
-      {/* ============ 测绘节点十字标记 ============ */}
-      <g
-        fill="none"
-        stroke="#FFFFFF"
-        strokeWidth="1"
-        opacity={isHero ? 0.18 : 0.1}
-      >
-        <path d="M274,138 h12 M280,132 v12" />
-        <path d="M514,378 h12 M520,372 v12" />
-        <path d="M634,226 h12 M640,220 v12" />
-        <path d="M984,216 h12 M990,210 v12" />
-        <path d="M854,618 h12 M860,612 v12" />
-        <path d="M314,824 h12 M320,818 v12" />
+      {/* ============ 规划道路走廊（对角线，略亮） ============ */}
+      <g fill="none" stroke="#FFFFFF" strokeWidth="1.2" opacity={roadAlpha}>
+        <line x1="-20" y1="820" x2="580" y2="280" />
+        <line x1="10" y1="880" x2="610" y2="340" />
+        <line x1="580" y1="280" x2="1340" y2="-20" />
+        <line x1="610" y1="340" x2="1400" y2="40" />
       </g>
 
-      {/* ============ 地貌等高线（左下角，深度层次 + 左侧视觉配重） ============ */}
+      {/* ============ 区域标注（极淡文字，呼应土地规划图纸） ============ */}
       <g
-        fill="none"
-        stroke="#FFFFFF"
-        strokeWidth="1"
-        opacity={isHero ? 0.1 : 0.05}
+        fill="#FFFFFF"
+        stroke="none"
+        fontFamily="'SFMono-Regular', Consolas, monospace"
+        fontSize="11"
+        letterSpacing="3"
+        opacity={isHero ? 0.14 : 0.08}
       >
-        <path d="M90,790 C150,730 270,725 330,785 C390,845 280,900 190,880 C110,862 40,845 90,790 Z" />
-        <path d="M130,800 C180,755 270,752 315,800 C358,846 270,888 200,872 C140,858 88,840 130,800 Z" />
-        <path d="M170,810 C205,780 265,778 295,810 C325,842 262,868 212,856 C168,846 140,836 170,810 Z" />
+        <text x="70" y="160" textAnchor="middle">Z-04</text>
+        <text x="420" y="130" textAnchor="start">Z-03 · RURAL</text>
+        <text x="740" y="160" textAnchor="start">Z-07 · MIXED USE</text>
+        <text x="1100" y="100" textAnchor="middle">Z-02</text>
+        <text x="200" y="400" textAnchor="start">Z-06 · RESERVE</text>
+        <text x="1050" y="400" textAnchor="end">Z-01 · TRANSIT</text>
+        <text x="160" y="650" textAnchor="start">Z-09</text>
+        <text x="650" y="670" textAnchor="start">Z-05 · DEVELOPMENT</text>
+        <text x="1050" y="650" textAnchor="end">Z-08</text>
       </g>
 
       {isHero && (
         <>
-          {/* ============ 金色高亮宗地（视觉焦点，锚定右上区避让文字带） ============ */}
+          {/* ============ 金色高亮宗地（中心偏右大区块） ============ */}
           <g className="arxhe-parcel-breath">
-            {/* 宗地主边界 */}
-            <path
+            {/* 宗地主边界 — 580→900, 220→480 */}
+            <rect
               className="arxhe-parcel-draw"
-              d="M1080,178 L1360,136 L1422,410 L1132,452 Z"
+              x="580"
+              y="220"
+              width="320"
+              height="260"
               fill="none"
               stroke="url(#arxhe-gold)"
-              strokeWidth="1.5"
+              strokeWidth="1.8"
             />
-            {/* 宗地内部分割线（业态分割） */}
-            <path
-              d="M1080,178 L1132,452"
-              fill="none"
-              stroke="url(#arxhe-gold)"
-              strokeWidth="1"
-              opacity="0.4"
+            {/* 内部业态分割线 */}
+            <line
+              x1="740" y1="220" x2="740" y2="480"
+              fill="none" stroke="url(#arxhe-gold)" strokeWidth="1" opacity="0.45"
             />
-            <path
-              d="M1230,156 L1288,430"
-              fill="none"
-              stroke="url(#arxhe-gold)"
-              strokeWidth="1"
-              opacity="0.4"
+            <line
+              x1="580" y1="350" x2="900" y2="350"
+              fill="none" stroke="url(#arxhe-gold)" strokeWidth="1" opacity="0.45"
+            />
+            {/* 左下子区块对角线 */}
+            <line
+              x1="580" y1="350" x2="740" y2="480"
+              fill="none" stroke="url(#arxhe-gold)" strokeWidth="1" opacity="0.3"
             />
             {/* 四角测绘标记 */}
-            <g fill="none" stroke="#B59A5F" strokeWidth="1.5">
-              <path d="M1068,186 L1080,178 L1088,170" />
-              <path d="M1352,128 L1360,136 L1368,144" />
-              <path d="M1414,418 L1422,410 L1430,402" />
-              <path d="M1124,460 L1132,452 L1140,444" />
+            <g fill="none" stroke="#C9A850" strokeWidth="1.5">
+              <path d="M568,232 L580,220 L592,208" />
+              <path d="M888,208 L900,220 L912,232" />
+              <path d="M568,468 L580,480 L592,492" />
+              <path d="M888,492 L900,480 L912,468" />
             </g>
             {/* 宗地中心节点 */}
-            <circle
-              cx="1250"
-              cy="295"
-              r="4"
-              fill="#B59A5F"
-              stroke="none"
-              opacity="0.9"
-            />
+            <circle cx="740" cy="350" r="5" fill="#C9A850" stroke="none" opacity="0.9" />
             <circle
               className="arxhe-node-pulse"
-              cx="1250"
-              cy="295"
-              r="14"
-              fill="none"
-              stroke="#B59A5F"
-              strokeWidth="1"
+              cx="740" cy="350" r="18"
+              fill="none" stroke="#C9A850" strokeWidth="1"
             />
-            {/* 地块编号标注于宗地内部（地籍图惯例），描边光晕防线条遮挡 */}
+            {/* 地块编号标注（描边光晕防线条遮挡） */}
             <text
               className="arxhe-map-label"
-              x="1250"
-              y="262"
+              x="740" y="310"
               textAnchor="middle"
-              fill="#B59A5F"
+              fill="#C9A850"
               stroke="#001E33"
-              strokeWidth="4"
+              strokeWidth="5"
               paintOrder="stroke"
-              fontFamily="'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
-              fontSize="13"
-              letterSpacing="2"
-              opacity="0.8"
+              fontFamily="'SFMono-Regular', Consolas, monospace"
+              fontSize="14"
+              letterSpacing="3"
+              opacity="0.85"
             >
               LOT 012 · 12.84 ha
             </text>
           </g>
 
-          {/* 维州坐标（墨尔本），呼应澳洲土地业务 */}
+          {/* 维州坐标 */}
           <g
             className="arxhe-map-label"
             fill="#FFFFFF"
             stroke="none"
-            fontFamily="'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
+            fontFamily="'SFMono-Regular', Consolas, monospace"
             fontSize="12"
             letterSpacing="2"
             opacity="0.28"
           >
-            <text x="48" y="852">37°48′S · 144°58′E — VICTORIA, AUSTRALIA</text>
+            <text x="48" y="860">37°48′S · 144°58′E — VICTORIA, AUSTRALIA</text>
           </g>
         </>
       )}

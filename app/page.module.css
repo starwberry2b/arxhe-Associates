@@ -91,8 +91,8 @@
   height: 560px;
   background: radial-gradient(
     ellipse at center,
-    rgba(140, 115, 64, 0.09) 0%,
-    rgba(140, 115, 64, 0.03) 35%,
+    rgba(184, 147, 58, 0.1) 0%,
+    rgba(184, 147, 58, 0.04) 35%,
     transparent 70%
   );
   pointer-events: none;
@@ -125,7 +125,7 @@
   align-items: center;
   gap: 0.875rem;
   font-size: var(--fs-caption);
-  color: #B59A5F;
+  color: var(--color-accent);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   margin-bottom: 2.25rem;
@@ -179,7 +179,7 @@
 
 .heroFooterSep {
   margin: 0 0.75rem;
-  color: #B59A5F;
+  color: var(--color-accent);
   opacity: 0.7;
 }
 
@@ -318,7 +318,7 @@
   .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 36px rgba(0, 60, 96, 0.08);
-    border-color: rgba(140, 115, 64, 0.35);
+    border-color: rgba(184, 147, 58, 0.38);
   }
 
   .card:hover::before {
@@ -421,7 +421,7 @@
   background-color: var(--color-accent);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(140, 115, 64, 0.28);
+  box-shadow: 0 8px 24px rgba(184, 147, 58, 0.3);
 }
 
 /* 移动端：CTA 按钮全宽 */

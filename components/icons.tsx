@@ -1,5 +1,5 @@
 /**
- * 极简线性 SVG 图标集 — 统一 40×40 viewBox，描边宽度 1.5，强调色 #8C7340
+ * 极简线性 SVG 图标集 — 统一 40×40 viewBox，描边宽度 1.5
  * CLAUDE.md §3.4：极简线性 SVG 风格，统一描边粗细
  */
 
@@ -7,7 +7,7 @@ const iconProps = {
   width: 40,
   height: 40,
   fill: 'none',
-  stroke: '#8C7340',
+  stroke: '#B8943A',
   strokeWidth: 1.5,
   strokeLinecap: 'round' as const,
   strokeLinejoin: 'round' as const,
@@ -46,7 +46,7 @@ export function IconLandReserve() {
     <svg {...iconProps} viewBox="0 0 40 40" aria-hidden="true">
       <path d="M8,12 L20,6 L32,10 L32,30 L20,36 L8,32 Z" />
       <circle cx="20" cy="21" r="5" />
-      <circle cx="20" cy="21" r="2" fill="#8C7340" fillOpacity="0.3" />
+      <circle cx="20" cy="21" r="2" fill="#B8943A" fillOpacity="0.4" />
       <line x1="20" y1="26" x2="20" y2="34" />
       <line x1="13" y1="16" x2="27" y2="16" opacity="0.3" />
     </svg>
