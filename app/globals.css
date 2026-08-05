@@ -5,11 +5,13 @@
 
 :root {
   /* ---- §3.1 色彩 ---- */
-  --color-primary:    #0F1E33;   /* 主色-深蓝：页首、页脚、深色区块背景 */
-  --color-dark-gray:  #2B2F36;   /* 深灰：正文标题、次要区块 */
+  --color-primary:    #003C60;   /* 主色-深蓝（提取自 Logo 图标蓝）：页首、页脚、深色区块背景 */
+  --color-primary-deep: #001E33; /* 最深蓝（渐变暗部/阴影叠加） */
+  --color-dark-gray:  #4D4948;   /* 深灰（提取自 Logo 主文字色）：正文标题 */
   --color-black:      #0A0A0A;   /* 纯黑：强调文字、首屏叠加层 */
   --color-bg-light:   #F5F6F7;   /* 浅灰底：浅色区块背景 */
-  --color-text-body:  #4A4F57;   /* 正文灰：正文文字 */
+  --color-text-body:  #4D4948;   /* 正文灰（对齐 Logo 深灰暖调） */
+  --color-text-sub:   #9F9E9F;   /* 次级文字（提取自 Logo 副文字色） */
   --color-accent:     #8C7340;   /* 低饱和金：分割线、图标、按钮描边，少量点缀 */
 
   /* ---- §3.2 字体 ---- */

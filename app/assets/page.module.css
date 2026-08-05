@@ -42,7 +42,7 @@
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(15, 30, 51, 0.08);
+    box-shadow: 0 12px 36px rgba(0, 60, 96, 0.08);
   }
   .card:hover::before {
     transform: scaleX(1);
@@ -55,7 +55,7 @@
   right: 1.5rem;
   font-size: 0.8125rem;
   letter-spacing: 0.15em;
-  color: rgba(15, 30, 51, 0.18);
+  color: rgba(0, 60, 96, 0.15);
 }
 
 .cardTitle {

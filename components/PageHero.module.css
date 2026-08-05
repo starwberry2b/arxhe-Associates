@@ -3,7 +3,7 @@
 
 .hero {
   background:
-    radial-gradient(ellipse 90% 70% at 50% 38%, #14263F 0%, var(--color-primary) 55%, #0B1728 100%);
+    radial-gradient(ellipse 90% 70% at 50% 38%, #0A4A72 0%, var(--color-primary) 55%, var(--color-primary-deep) 100%);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -38,7 +38,7 @@
   line-height: 1.35;
   color: #ffffff;
   letter-spacing: 0.04em;
-  text-shadow: 0 2px 20px rgba(11, 23, 40, 0.5);
+  text-shadow: 0 2px 20px rgba(0, 30, 51, 0.4);
 }
 
 .subtitle {
