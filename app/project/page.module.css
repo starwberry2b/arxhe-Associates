@@ -1,0 +1,207 @@
+/* /project — 标杆项目 Ripley View（CLAUDE.md §6.5） */
+
+/* ---- 通用 ---- */
+.sectionInner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--section-padding-y) 2rem;
+  text-align: center;
+}
+
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.sectionTag::before,
+.sectionTag::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent);
+  opacity: 0.5;
+}
+
+/* ---- 板块2 · 简介 + KPI ---- */
+.intro {
+  background-color: #ffffff;
+}
+
+.introText {
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto;
+}
+
+/* KPI 大字 */
+.kpi {
+  margin-top: 2.5rem;
+}
+
+.kpiValue {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-accent);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+/* ---- 板块3 · 核心创新 ---- */
+.innovations {
+  background-color: var(--color-bg-light);
+}
+
+.innovationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--card-gap);
+  text-align: left;
+}
+
+.innovationItem {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 2rem 1.75rem;
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+}
+
+.innovationIndex {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+/* ---- 板块4 · 区位优势 ---- */
+.location {
+  background-color: #ffffff;
+}
+
+.locationIntro {
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-dark-gray);
+  margin: 0 auto 1.5rem;
+  text-align: left;
+}
+
+.locationList {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.locationList li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: var(--fs-caption);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+}
+
+.locationList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.locationOutro {
+  font-size: var(--fs-caption);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ---- 板块5 · 生态保育 ---- */
+.ecology {
+  background-color: var(--color-bg-light);
+}
+
+.ecologyText {
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto 1.5rem;
+}
+
+.ecologyCompliance {
+  font-size: var(--fs-caption);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto;
+}
+
+/* ---- 板块6 · 分期开发 ---- */
+.phasing {
+  background-color: #ffffff;
+}
+
+.phasingText {
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto 1rem;
+}
+
+/* ---- 板块7 · 价值总结 ---- */
+.summary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.summaryText {
+  font-size: var(--fs-h2);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+  color: #ffffff;
+  margin: 0 auto 1.5rem;
+}
+
+.footnote {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 auto;
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 767px) {
+  .sectionInner {
+    padding: var(--section-padding-y-mobile) 1.25rem;
+  }
+
+  .innovationGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .kpiValue {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .summaryText {
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+  }
+}

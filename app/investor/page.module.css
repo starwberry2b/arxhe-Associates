@@ -1,0 +1,240 @@
+/* /investor — 投资人合作（CLAUDE.md §6.6）
+   含表单校验、成功反馈 */
+
+/* ---- 通用 ---- */
+.sectionInner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--section-padding-y) 2rem;
+  text-align: center;
+}
+
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.sectionTag::before,
+.sectionTag::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent);
+  opacity: 0.5;
+}
+
+/* ---- 板块2 · 合作前言 ---- */
+.intro {
+  background-color: #ffffff;
+}
+
+.introTexts {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.introText {
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+  margin: 0 auto;
+}
+
+.lead {
+  font-size: 1.375rem;
+  line-height: 1.6;
+  color: var(--color-dark-gray);
+}
+
+/* ---- 板块3 · 合作方向 ---- */
+.directions {
+  background-color: var(--color-bg-light);
+}
+
+.directionList {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  text-align: left;
+  max-width: 900px;
+}
+
+.directionList li {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.25rem 2rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: var(--fs-caption);
+  line-height: 1.5;
+  color: var(--color-dark-gray);
+}
+
+.directionList li::before {
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  top: 1.5rem;
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* ---- 板块4 · 表单 ---- */
+.formSection {
+  background-color: #ffffff;
+}
+
+/* 成功提示 */
+.successBanner {
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: rgba(140, 115, 64, 0.08);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: var(--fs-caption);
+  line-height: 1.6;
+  border-radius: 4px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 表单 */
+.form {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: var(--fs-caption);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-dark-gray);
+}
+
+.required {
+  color: var(--color-accent);
+}
+
+/* 输入框统一风格 */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-caption);
+  font-family: var(--font-family);
+  color: var(--color-dark-gray);
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(140, 115, 64, 0.1);
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.inputError {
+  border-color: #c0392b;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+}
+
+/* 下拉选择 */
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238C7340' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* 错误提示 */
+.error {
+  font-size: 0.75rem;
+  color: #c0392b;
+  margin-top: 0.125rem;
+}
+
+/* 提交按钮 */
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-heading);
+  font-family: var(--font-family);
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #7A6335;
+  transform: translateY(-1px);
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 767px) {
+  .sectionInner {
+    padding: var(--section-padding-y-mobile) 1.25rem;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+  }
+
+  .directionList {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .directionList li {
+    padding: 1rem 1rem 1rem 1.75rem;
+  }
+
+  .form {
+    gap: 1.25rem;
+  }
+}
