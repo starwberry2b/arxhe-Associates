@@ -1,0 +1,14 @@
+/* 滚动淡入动画 — IntersectionObserver 触发
+   CLAUDE.md §3.5：透明度/位移微动效（200–400ms，ease-out） */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,224 @@
+/* Header — 全局导航栏 + 语言切换（CLAUDE.md §5.1） */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.sticky {
+  background-color: rgba(15, 30, 51, 0.96);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.inner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 品牌名 */
+.brand {
+  font-size: 1rem;
+  font-weight: var(--font-weight-heading);
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.brand:hover {
+  color: var(--color-accent);
+}
+
+/* 桌面端导航区（导航 + 语言按钮） */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.active {
+  color: var(--color-accent);
+}
+
+.active:hover {
+  color: var(--color-accent);
+}
+
+/* ---- 语言切换按钮 ---- */
+.langToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 32px;
+  padding: 0 0.625rem;
+  margin-left: 0.5rem;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  font-family: var(--font-family);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.langToggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background-color: rgba(140, 115, 64, 0.08);
+}
+
+/* 移动端汉堡按钮 */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* 移动端抽屉菜单 */
+.mobileDrawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 30, 51, 0.98);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobileDrawerOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.mobileNavList .navLink {
+  font-size: 1.25rem;
+  padding: 0.875rem 1.5rem;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mobileNavList .langToggle {
+  margin-top: 0.75rem;
+  margin-left: 0;
+}
+
+/* 平板端 — 压缩导航间距 */
+@media (max-width: 1024px) {
+  .navLink {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .langToggle {
+    margin-left: 0.25rem;
+  }
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .inner {
+    padding: 0 1.25rem;
+  }
+
+  .brand {
+    font-size: 0.9375rem;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobileDrawer {
+    display: block;
+  }
+}

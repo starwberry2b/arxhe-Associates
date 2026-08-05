@@ -1,0 +1,89 @@
+/* 页脚 — 深蓝底 + 白色文字，六页一致 */
+
+.footer {
+  background-color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.75);
+  padding: var(--section-padding-y) 2rem 2.5rem;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 品牌区域 */
+.brand {
+  margin-bottom: 2rem;
+}
+
+.brandName {
+  font-size: var(--fs-card-title);
+  font-weight: var(--font-weight-heading);
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.slogan {
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.25rem;
+}
+
+/* 分割线 */
+.divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin: 2rem auto;
+  opacity: 0.5;
+}
+
+/* 链接行 */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: var(--fs-caption);
+}
+
+.links a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--color-accent);
+}
+
+/* 归属 */
+.affiliation {
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--section-padding-y-mobile) 1.25rem 2rem;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.375rem 0;
+  }
+}
