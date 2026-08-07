@@ -1,0 +1,42 @@
+/* FigureBand — 通栏杂志式图片带（02 白廊 · 杂志编辑风）
+   全宽图片 + FIG. 编号图注，与首页 Hero 图注规范一致 */
+
+.figure {
+  margin: 0;
+  background-color: var(--color-paper);
+}
+
+.imgWrap {
+  position: relative;
+  width: 100%;
+  height: min(52vh, 480px);
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* 图注规范：地点大写英文 + FIG. 编号，10.5px letterspacing .3em 银灰 */
+.caption {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 12px 4rem 0;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .imgWrap {
+    height: min(42vh, 320px);
+  }
+
+  .caption {
+    padding: 10px 1.25rem 0;
+  }
+}

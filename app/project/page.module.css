@@ -1,72 +1,60 @@
 /* /project — 标杆项目 Ripley View（CLAUDE.md §6.5）
-   浅色科技奢华风 — 与首页视觉系统对齐
-   暖珠光板块 · 精致卡片 · 金色顶线 · 深蓝径向总结区 */
+   02 白廊 · 杂志编辑风：品牌蓝大 KPI · 索引式创新卡 · 细线列表 · 编辑式总结 */
 
 /* ---- 通用 ---- */
 .sectionInner {
-  max-width: 860px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: var(--section-padding-y) 2rem;
-  text-align: center;
+  padding: 5rem 4rem 6rem;
 }
 
 .sectionTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  letter-spacing: 0.22em;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  margin-bottom: 2rem;
-}
-
-/* 双侧对称装饰线 — 与首页一致 */
-.sectionTag::before,
-.sectionTag::after {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-accent);
-  opacity: 0.5;
+  color: var(--color-brand);
+  margin-bottom: 2.5rem;
 }
 
 /* ---- 板块2 · 简介 + KPI ---- */
 .intro {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
 }
 
 .introText {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  margin: 0 auto;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 2.1;
+  color: var(--color-ink);
+  max-width: 880px;
 }
 
-/* KPI 大字 — 金色点缀，与首页 accent 同色系 */
+/* KPI 大字 — 品牌蓝衬线，编辑风视觉焦点 */
 .kpi {
-  margin-top: 2.5rem;
+  margin-top: 2.75rem;
 }
 
 .kpiValue {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.125rem, 3.8vw, 3.375rem);
+  color: var(--color-brand);
   letter-spacing: 0.03em;
   line-height: 1.2;
 }
 
-/* ---- 板块3 · 核心创新（暖珠光底 + 高级卡片）---- */
+/* ---- 板块3 · 核心创新：索引式卡片 ---- */
 .innovations {
-  background-color: #F5F4F0;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .innovationGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--card-gap);
-  text-align: left;
+  gap: 2.5rem 4rem;
 }
 
 /* RevealSection 包装 div → flex 容器，卡片撑满等高 */
@@ -75,198 +63,147 @@
   flex-direction: column;
 }
 
-/* 创新卡片 — 白底 + 精致阴影 + 顶部金线 */
 .innovationItem {
-  position: relative;
   flex: 1;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 60, 96, 0.08);
-  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
-  padding: 2.5rem 1.75rem;
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  border-top: 2px solid var(--color-brand);
+  padding-top: 1.375rem;
+  font-size: 13.5px;
+  line-height: 2.05;
+  color: var(--color-ink-soft);
 }
 
-/* 顶部金线：默认半透明收起，hover 展开 */
-.innovationItem::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
-  transform: scaleX(0.3);
-  transform-origin: left;
-  opacity: 0.5;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-}
-
-@media (hover: hover) {
-  .innovationItem:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
-    border-color: rgba(184, 147, 58, 0.35);
-  }
-
-  .innovationItem:hover::before {
-    transform: scaleX(1);
-    opacity: 1;
-  }
+.innovationItem p {
+  max-width: none;
 }
 
 .innovationIndex {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--color-accent);
-  margin-bottom: 0.75rem;
+  font-size: 10.5px;
+  letter-spacing: 0.34em;
+  color: var(--color-silver);
+  margin-bottom: 14px;
 }
 
 /* ---- 板块4 · 区位优势 ---- */
 .location {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .locationIntro {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-primary);
-  margin: 0 auto 1.5rem;
-  text-align: left;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 2.1;
+  color: var(--color-ink);
+  max-width: 880px;
+  margin-bottom: 2rem;
 }
 
 .locationList {
   list-style: none;
   padding: 0;
-  margin: 0 auto 1.5rem;
-  text-align: left;
+  margin: 0 0 2rem;
+  max-width: 880px;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
 }
 
 .locationList li {
-  position: relative;
-  padding-left: 1.5rem;
-  font-size: var(--fs-caption);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
+  font-size: 13.5px;
+  line-height: 2.05;
+  color: var(--color-ink-soft);
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-hair);
 }
 
-.locationList li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.65em;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-accent);
-  border-radius: 50%;
-  opacity: 0.6;
+.locationList li:first-child {
+  border-top: 1px solid var(--color-hair);
 }
 
 .locationOutro {
-  font-size: var(--fs-caption);
-  line-height: var(--line-height-body);
-  color: var(--color-primary);
-  margin: 0 auto;
-  text-align: left;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  max-width: 880px;
 }
 
-/* ---- 板块5 · 生态保育（暖珠光底）---- */
+/* ---- 板块5 · 生态保育 ---- */
 .ecology {
-  background-color: #F5F4F0;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .ecologyText {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  margin: 0 auto 1.5rem;
+  font-size: 13.5px;
+  line-height: 2.1;
+  color: var(--color-ink-soft);
+  max-width: 880px;
+  margin-bottom: 1.5rem;
 }
 
 .ecologyCompliance {
-  font-size: var(--fs-caption);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  margin: 0 auto;
+  font-size: 13px;
+  line-height: 2.05;
+  color: var(--color-ink-soft);
+  max-width: 880px;
 }
 
 /* ---- 板块6 · 分期开发 ---- */
 .phasing {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .phasingText {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  margin: 0 auto 1rem;
+  font-size: 13.5px;
+  line-height: 2.1;
+  color: var(--color-ink-soft);
+  max-width: 880px;
+  margin-bottom: 1.25rem;
 }
 
-/* ---- 板块7 · 价值总结（深蓝径向渐变 — 浅色页面中的戏剧性暗调）---- */
+/* ---- 板块7 · 价值总结：编辑式收束陈述 ---- */
 .summary {
-  position: relative;
-  background: radial-gradient(ellipse 80% 90% at 50% 50%, #0A4A72 0%, var(--color-primary) 60%, var(--color-primary-deep) 100%);
-  overflow: hidden;
-  color: #ffffff;
-}
-
-.summary .sectionInner {
-  position: relative;
-  z-index: 1;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .summaryText {
-  font-size: var(--fs-h2);
-  font-weight: var(--font-weight-heading);
-  line-height: var(--line-height-heading);
-  color: #ffffff;
-  margin: 0 auto 1.5rem;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.375rem, 2.6vw, 2.125rem);
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  max-width: 880px;
+  margin-bottom: 2rem;
 }
 
 .footnote {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0 auto;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--color-silver);
+  max-width: 880px;
 }
 
-/* ---- 平板端（768–1199px）---- */
+/* ---- 平板端（768–1199px） ---- */
 @media (max-width: 1024px) {
-  .innovationItem {
-    padding: 2.25rem 1.5rem 2rem;
-  }
-
-  .innovationGrid {
-    gap: 1.5rem;
+  .sectionInner {
+    padding: 4rem 2rem 5rem;
   }
 }
 
-/* ---- 移动端（< 768px）---- */
+/* ---- 移动端（< 768px） ---- */
 @media (max-width: 767px) {
   .sectionInner {
-    padding: var(--section-padding-y-mobile) 1.25rem;
+    padding: 3.5rem 1.25rem 4rem;
   }
 
   .innovationGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .innovationItem {
-    padding: 2.25rem 1.5rem 2rem;
-  }
-
-  .kpiValue {
-    font-size: clamp(2rem, 10vw, 2.75rem);
-  }
-
-  .summaryText {
-    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    gap: 2.25rem;
   }
 }

@@ -1,20 +1,21 @@
-/* 页脚 — 深蓝底 + 白色文字，六页一致 */
+/* 页脚 — 02 白廊 · 杂志编辑风：细线顶边 + logo + 银灰 letterspaced 链接 */
 
 .footer {
-  background-color: var(--color-primary);
-  color: rgba(255, 255, 255, 0.75);
-  padding: var(--section-padding-y) 2rem 2.5rem;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
+  color: var(--color-silver);
+  padding: 3.5rem 2rem 2.5rem;
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: 1360px;
   margin: 0 auto;
   text-align: center;
 }
 
 /* 品牌区域 */
 .brand {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 /* 全局 p{max-width:720px} 会把段落盒子压窄并靠左，
@@ -27,7 +28,7 @@
 
 /* Footer Logo */
 .brandLogo {
-  height: 36px;
+  height: 30px;
   width: auto;
   max-width: none;
   display: block;
@@ -35,53 +36,56 @@
 }
 
 .tagline {
-  font-size: var(--fs-caption);
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  color: var(--color-ink-soft);
 }
 
 .slogan {
-  font-size: var(--fs-caption);
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 0.25rem;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  color: var(--color-silver);
+  margin-top: 0.375rem;
 }
 
-/* 分割线 */
+/* 分割线 — 细线收敛为编辑风 hairline */
 .divider {
-  width: 40px;
+  width: 48px;
   height: 1px;
-  background-color: var(--color-accent);
-  margin: 2rem auto;
-  opacity: 0.5;
+  background-color: var(--color-hair);
+  margin: 1.75rem auto;
 }
 
-/* 链接行 */
+/* 链接行 — 银灰 letterspaced */
 .links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
   margin-bottom: 1.5rem;
-  font-size: var(--fs-caption);
+  font-size: 11.5px;
+  letter-spacing: 0.26em;
 }
 
 .links a {
-  color: rgba(255, 255, 255, 0.6);
-  transition: color 0.2s ease;
+  color: var(--color-silver);
+  transition: color 0.25s ease;
 }
 
 .links a:hover {
-  color: var(--color-accent);
+  color: var(--color-brand);
 }
 
 /* 归属 */
 .affiliation {
-  font-size: var(--fs-caption);
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  color: var(--color-silver);
 }
 
 /* 移动端 */
 @media (max-width: 767px) {
   .footer {
-    padding: var(--section-padding-y-mobile) 1.25rem 2rem;
+    padding: 2.75rem 1.25rem 2rem;
   }
 
   .links {

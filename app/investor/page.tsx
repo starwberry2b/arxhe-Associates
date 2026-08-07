@@ -5,6 +5,7 @@ import { useLang } from '@/lib/i18n';
 import { INVESTOR } from '@/lib/translations';
 import PageHero from '@/components/PageHero';
 import RevealSection from '@/components/RevealSection';
+import FigureBand from '@/components/FigureBand';
 import styles from './page.module.css';
 
 /* 校验规则 */
@@ -84,7 +85,7 @@ export default function InvestorPage() {
   return (
     <>
       {/* 板块1 · 页面标题 */}
-      <PageHero title={INVESTOR.hero.title} />
+      <PageHero title={INVESTOR.hero.title} vol="06 / INVESTOR" />
 
       {/* 板块2 · 合作前言 */}
       <section className={styles.intro}>
@@ -116,6 +117,14 @@ export default function InvestorPage() {
           </div>
         </RevealSection>
       </section>
+
+      {/* 通栏图片带：海岸线土地航拍（表单前视觉停顿） */}
+      <FigureBand
+        src="/images/bg-aerial-coastal.jpg"
+        alt="澳大利亚维多利亚州海岸线土地航拍"
+        captionLeft="VICTORIA, AUSTRALIA"
+        captionRight="FIG. 01"
+      />
 
       {/* 板块4 · 预约表单 */}
       <section className={styles.formSection}>

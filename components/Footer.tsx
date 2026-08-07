@@ -18,7 +18,7 @@ export default function Footer() {
         {/* 品牌 */}
         <div className={styles.brand}>
           <Image
-            src="/logo-white.svg"
+            src="/logo-standard.svg"
             alt={BRAND.name[lang]}
             width={158}
             height={38}

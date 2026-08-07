@@ -1,138 +1,122 @@
 /* /strategy — 投资策略（CLAUDE.md §6.3）
-   浅色科技奢华风 — 对齐首页视觉语言
-   暖珠光 Hero（PageHero）· 金色点缀 · 深蓝主标题 · 高级留白 */
+   02 白廊 · 杂志编辑风：超大中文数字编号 + 细线分块 */
 
 /* ============================================================
    通用容器
    ============================================================ */
 
 .sectionInner {
-  max-width: 860px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: var(--section-padding-y) 2rem;
+  padding: 5rem 4rem 6rem;
 }
 
 .strategies {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
 }
 
-/* 板块标签 — 与首页 sectionTag 一致：金色双侧饰线 */
 .sectionTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
+  color: var(--color-brand);
   margin-bottom: 1.25rem;
-  font-weight: 500;
 }
 
-/* 双侧对称装饰线 */
-.sectionTag::before,
-.sectionTag::after {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-accent);
-  opacity: 0.5;
-}
-
-/* 板块大标题 — 深蓝主色，与首页 sectionTitle 一致 */
 .sectionTitle {
-  font-size: var(--fs-h2);
-  color: var(--color-primary);
-  margin-bottom: 3.5rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.625rem, 2.8vw, 2.375rem);
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  margin-bottom: 3rem;
 }
 
 /* ============================================================
-   策略块
+   策略块：超大中文数字编号 + 细线分隔
    ============================================================ */
 
 .strategyBlock {
-  position: relative;
-  padding: 3rem 0;
-  border-bottom: 1px solid rgba(0, 60, 96, 0.06);
+  display: grid;
+  grid-template-columns: 180px 1fr 1.4fr;
+  gap: 3rem;
+  padding: 3.25rem 0;
+  border-bottom: 1px solid var(--color-hair);
+  align-items: start;
 }
 
-.strategyBlock:last-child {
-  border-bottom: none;
+/* RevealSection 包装 div 的首块加顶细线 */
+.sectionInner > *:first-child .strategyBlock {
+  border-top: 1px solid var(--color-hair);
 }
 
-/* 序号水印 — 金色 + 加粗 */
+/* 壹贰叁肆 — 衬线 200 极细，品牌蓝 */
 .strategyIndex {
   display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  color: var(--color-accent);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-family: var(--font-serif);
+  font-weight: 200;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  color: var(--color-brand);
+  opacity: 0.9;
 }
 
 .strategyTitle {
-  font-size: var(--fs-h2);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-primary);
-  line-height: var(--line-height-heading);
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.1875rem, 1.9vw, 1.625rem);
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  line-height: 1.6;
+  padding-top: 14px;
 }
 
 .strategyBody {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  max-width: var(--content-max-width);
+  font-size: 13.5px;
+  line-height: 2.15;
+  color: var(--color-ink-soft);
+  max-width: none;
+  padding-top: 18px;
 }
 
 /* 策略3 子内容 — 引导语 */
 .strategyIntro {
-  font-size: var(--fs-body);
-  color: var(--color-primary);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: var(--font-weight-heading);
+  font-size: 13.5px;
+  line-height: 2.15;
+  color: var(--color-ink-soft);
+  max-width: none;
+  padding-top: 18px;
 }
 
 .strategyList {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem;
+  margin: 1.25rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
 }
 
+/* 细线列表项 — 编辑风 */
 .strategyList li {
-  position: relative;
-  padding-left: 1.5rem;
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--color-ink-soft);
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--color-hair);
 }
 
-/* 金色圆点 — 对齐首页金色点缀语言 */
-.strategyList li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.65em;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-accent);
-  border-radius: 50%;
-  opacity: 0.6;
+.strategyList li:first-child {
+  border-top: 1px solid var(--color-hair);
 }
 
-/* 收尾语 — 深蓝主色 */
+/* 收尾语 — 墨色衬线 */
 .strategyOutro {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-heading);
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  max-width: none;
 }
 
 /* ============================================================
@@ -141,38 +125,40 @@
 
 /* 平板端（768–1024px） */
 @media (max-width: 1024px) {
+  .sectionInner {
+    padding: 4rem 2rem 5rem;
+  }
+
   .strategyBlock {
-    padding: 2.5rem 0;
+    grid-template-columns: 110px 1fr;
+    gap: 2rem;
+  }
+
+  .strategyBody,
+  .strategyIntro {
+    grid-column: 2;
   }
 }
 
 /* 移动端（< 768px） */
 @media (max-width: 767px) {
   .sectionInner {
-    padding: var(--section-padding-y-mobile) 1.25rem;
-  }
-
-  .sectionTitle {
-    font-size: clamp(1.625rem, 7vw, 2.25rem);
-    margin-bottom: 2rem;
-  }
-
-  .sectionTag {
-    font-size: 0.6875rem;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .sectionTag::before,
-  .sectionTag::after {
-    width: 18px;
+    padding: 3.5rem 1.25rem 4rem;
   }
 
   .strategyBlock {
-    padding: 2rem 0;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    padding: 2.25rem 0;
   }
 
   .strategyTitle {
-    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    padding-top: 0;
+  }
+
+  .strategyBody,
+  .strategyIntro {
+    grid-column: auto;
+    padding-top: 0;
   }
 }

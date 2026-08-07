@@ -4,6 +4,7 @@ import { useLang } from '@/lib/i18n';
 import { ABOUT } from '@/lib/translations';
 import PageHero from '@/components/PageHero';
 import RevealSection from '@/components/RevealSection';
+import FigureBand from '@/components/FigureBand';
 import styles from './page.module.css';
 
 export default function AboutPage() {
@@ -13,7 +14,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 板块1 · 页面标题 */}
-      <PageHero title={ABOUT.hero.title} />
+      <PageHero title={ABOUT.hero.title} vol="02 / ABOUT" />
 
       {/* 板块2 · 企业完整版简介 */}
       <section className={styles.intro}>
@@ -30,6 +31,14 @@ export default function AboutPage() {
           </div>
         </RevealSection>
       </section>
+
+      {/* 通栏图片带：待开发土地航拍 */}
+      <FigureBand
+        src="/images/bg-aerial-development.jpg"
+        alt="维州高潜力扩张区域待开发土地网格航拍"
+        captionLeft="VICTORIA, AUSTRALIA"
+        captionRight="FIG. 01"
+      />
 
       {/* 板块3 · 核心壁垒 2×2 网格 */}
       <section className={styles.barriers}>

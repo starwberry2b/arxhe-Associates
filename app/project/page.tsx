@@ -4,6 +4,7 @@ import { useLang } from '@/lib/i18n';
 import { PROJECT } from '@/lib/translations';
 import PageHero from '@/components/PageHero';
 import RevealSection from '@/components/RevealSection';
+import FigureBand from '@/components/FigureBand';
 import styles from './page.module.css';
 
 export default function ProjectPage() {
@@ -13,7 +14,7 @@ export default function ProjectPage() {
   return (
     <>
       {/* 板块1 · 页面标题 */}
-      <PageHero title={PROJECT.hero.title} />
+      <PageHero title={PROJECT.hero.title} vol="05 / PROJECT" />
 
       {/* 板块2 · 项目简介 + KPI */}
       <section className={styles.intro}>
@@ -26,6 +27,14 @@ export default function ProjectPage() {
           </div>
         </RevealSection>
       </section>
+
+      {/* 通栏图片带：Ripley View 总体规划图 */}
+      <FigureBand
+        src="/images/bg-site-plan.jpg"
+        alt="Ripley View 项目土地总体规划分区图"
+        captionLeft="RIPLEY VIEW, AUSTRALIA"
+        captionRight="FIG. 01"
+      />
 
       {/* 板块3 · 核心创新 */}
       <section className={styles.innovations}>
@@ -67,6 +76,14 @@ export default function ProjectPage() {
           </div>
         </RevealSection>
       </section>
+
+      {/* 通栏图片带：Ripley View 区域土地航拍 */}
+      <FigureBand
+        src="/images/bg-aerial-development.jpg"
+        alt="Ripley View 项目区域土地开发航拍"
+        captionLeft="RIPLEY VIEW, AUSTRALIA"
+        captionRight="FIG. 02"
+      />
 
       {/* 板块5 · 生态保育 */}
       <section className={styles.ecology}>

@@ -1,59 +1,45 @@
 /* ============================================================
    /assets — 核心资产矩阵（CLAUDE.md §6.4）
-   浅色科技奢华风 · 暖珠光底 · 金色点缀 · 高级卡片
+   02 白廊 · 杂志编辑风：四栏刊物索引（顶部 2px 品牌蓝线 + PILLAR 编号）
    ============================================================ */
 
 /* ---- 通用 ---- */
 .sectionInner {
-  max-width: 1120px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: var(--section-padding-y) 2rem;
-  text-align: center;
+  padding: 5rem 4rem 6rem;
 }
 
 .sectionTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  letter-spacing: 0.22em;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-/* 双侧对称装饰线 */
-.sectionTag::before,
-.sectionTag::after {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-accent);
-  opacity: 0.5;
+  color: var(--color-brand);
+  margin-bottom: 2.5rem;
 }
 
 .sectionTitle {
-  font-size: var(--fs-h2);
-  color: var(--color-primary);
-  margin-bottom: 3.5rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.625rem, 2.8vw, 2.375rem);
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  margin-bottom: 3rem;
 }
 
 /* ============================================================
-   板块 · 2×2 资产卡片（暖珠光底 + 高级卡片）
+   板块 · 四栏刊物索引
    ============================================================ */
 
 .assets {
-  background-color: #F5F4F0;
+  background-color: var(--color-paper);
 }
 
 .grid2x2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--card-gap);
-  text-align: left;
-  counter-reset: asset;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
 }
 
 /* RevealSection 包装 div → flex 容器，卡片撑满等高 */
@@ -62,71 +48,37 @@
   flex-direction: column;
 }
 
-/* 卡片 — 白底 + 精致阴影 + 序号水印 + 顶部金线 */
+/* 索引卡：2px 品牌蓝顶线 + 银灰编号 + 衬线标题 */
 .card {
   position: relative;
   flex: 1;
-  counter-increment: asset;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 60, 96, 0.08);
-  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
-  padding: 2.75rem 2rem 2.5rem;
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease;
+  border-top: 2px solid var(--color-brand);
+  padding-top: 1.375rem;
 }
 
-/* 顶部金线：默认半透明收起，hover 展开 */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
-  transform: scaleX(0.3);
-  transform-origin: left;
-  opacity: 0.5;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
-}
-
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
-    border-color: rgba(184, 147, 58, 0.35);
-  }
-
-  .card:hover::before {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-/* 序号水印（01 / 02 / 03 / 04） */
 .cardIndex {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  font-size: 0.8125rem;
-  letter-spacing: 0.15em;
-  color: rgba(0, 60, 96, 0.13);
-  font-weight: 600;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.34em;
+  color: var(--color-silver);
+  margin-bottom: 14px;
 }
 
 .cardTitle {
-  font-size: var(--fs-card-title);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-primary);
-  line-height: var(--line-height-heading);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 16.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  line-height: 1.7;
   margin-bottom: 1rem;
-  letter-spacing: 0.02em;
 }
 
 .cardBody {
-  font-size: var(--fs-caption);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
+  font-size: 12.5px;
+  line-height: 2.05;
+  color: var(--color-ink-soft);
+  max-width: none;
 }
 
 /* ============================================================
@@ -134,12 +86,12 @@
    ============================================================ */
 
 @media (max-width: 1024px) {
-  .card {
-    padding: 2.25rem 1.5rem 2rem;
+  .sectionInner {
+    padding: 4rem 2rem 5rem;
   }
 
   .grid2x2 {
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -149,19 +101,11 @@
 
 @media (max-width: 767px) {
   .sectionInner {
-    padding: var(--section-padding-y-mobile) 1.25rem;
-  }
-
-  .sectionTitle {
-    margin-bottom: 2rem;
+    padding: 3.5rem 1.25rem 4rem;
   }
 
   .grid2x2 {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .card {
-    padding: 2.25rem 1.5rem 2rem;
+    gap: 2.25rem;
   }
 }

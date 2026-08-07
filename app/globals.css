@@ -4,15 +4,26 @@
    ============================================================ */
 
 :root {
-  /* ---- §3.1 色彩 ---- */
+  /* ---- 02 白廊 · 杂志编辑风令牌（HANDOFF.md §2，全站基准） ---- */
+  --color-paper:      #FAFAF8;   /* 纸白底 */
+  --color-brand:      #003C60;   /* 品牌蓝（点缀/关键字/编号/KPI） */
+  --color-brand-deep: #002A44;   /* 品牌深蓝 */
+  --color-ink:        #33302F;   /* 墨色正文标题（Logo 字标暖灰系） */
+  --color-ink-soft:   rgba(51, 48, 47, 0.6);  /* 正文灰 */
+  --color-silver:     #9F9E9F;   /* 图注/辅助银灰 */
+  --color-hair:       rgba(51, 48, 47, 0.13); /* 细分隔线 */
+  --font-serif:       "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "SimSun", serif;
+  --font-sans:        "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  /* ---- §3.1 色彩（兼容旧引用，逐步收敛到编辑风令牌） ---- */
   --color-primary:    #003C60;   /* 主色-深蓝（提取自 Logo 图标蓝）：页首、页脚、深色区块背景 */
   --color-primary-deep: #001E33; /* 最深蓝（渐变暗部/阴影叠加） */
   --color-dark-gray:  #4D4948;   /* 深灰（提取自 Logo 主文字色）：正文标题 */
   --color-black:      #0A0A0A;   /* 纯黑：强调文字、首屏叠加层 */
   --color-bg-light:   #F5F6F7;   /* 浅灰底：浅色区块背景 */
-  --color-text-body:  #4D4948;   /* 正文灰（对齐 Logo 深灰暖调） */
+  --color-text-body:  rgba(51, 48, 47, 0.72); /* 正文灰（编辑风暖灰调） */
   --color-text-sub:   #9F9E9F;   /* 次级文字（提取自 Logo 副文字色） */
-  --color-accent:     #B8943A;   /* 饱和金（提取自 Logo 金色基调 + 提饱和度）：分割线、图标、按钮 */
+  --color-accent:     #003C60;   /* 编辑风：点缀色统一收敛为品牌蓝 */
 
   /* ---- §3.2 字体 ---- */
   --font-family:      "Inter", "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
@@ -57,12 +68,12 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-body);
+  font-family: var(--font-sans);
+  font-weight: 300;
   font-size: var(--fs-body);
   line-height: var(--line-height-body);
   color: var(--color-text-body);
-  background-color: #ffffff;
+  background-color: var(--color-paper);
 }
 
 /* 全局交互优化：消除移动端 300ms 点击延迟 + 触摸滚动优化 */
@@ -83,11 +94,12 @@ a, button, [role="button"] {
   }
 }
 
-/* 语义化标题层级 — 关键文字使用 Logo 蓝 */
+/* 语义化标题层级 — 编辑风：墨色衬线标题，品牌蓝仅作强调 */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-weight-heading);
+  font-family: var(--font-serif);
+  font-weight: 400;
   line-height: var(--line-height-heading);
-  color: var(--color-primary);
+  color: var(--color-ink);
 }
 
 h1 { font-size: var(--fs-h1); }

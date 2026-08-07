@@ -4,6 +4,7 @@ import { useLang } from '@/lib/i18n';
 import { ASSETS } from '@/lib/translations';
 import PageHero from '@/components/PageHero';
 import RevealSection from '@/components/RevealSection';
+import FigureBand from '@/components/FigureBand';
 import styles from './page.module.css';
 
 export default function AssetsPage() {
@@ -13,7 +14,15 @@ export default function AssetsPage() {
   return (
     <>
       {/* 板块1 · 页面标题 */}
-      <PageHero title={ASSETS.hero.title} />
+      <PageHero title={ASSETS.hero.title} vol="04 / ASSETS" />
+
+      {/* 通栏图片带：原生土地地貌航拍 */}
+      <FigureBand
+        src="/images/bg-aerial-terrain.jpg"
+        alt="维州原生土地储备地貌航拍"
+        captionLeft="VICTORIA, AUSTRALIA"
+        captionRight="FIG. 01"
+      />
 
       {/* 板块2 · 2×2 资产卡片 */}
       <section className={styles.assets}>

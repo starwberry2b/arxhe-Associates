@@ -1,136 +1,110 @@
 /* /investor — 投资人合作（CLAUDE.md §6.6）
-   对齐首页「浅色科技奢华风」：暖珠光底 · 精致卡片 · 金色点缀
-   含表单校验、成功反馈 */
+   02 白廊 · 杂志编辑风：衬线引言 · 索引式方向卡 · 细线表单 · 品牌蓝按钮 */
 
 /* ---- 通用 ---- */
 .sectionInner {
-  max-width: 860px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: var(--section-padding-y) 2rem;
-  text-align: center;
+  padding: 5rem 4rem 6rem;
 }
 
 .sectionTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  letter-spacing: 0.22em;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-/* 双侧对称装饰线 */
-.sectionTag::before,
-.sectionTag::after {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-accent);
-  opacity: 0.5;
+  color: var(--color-brand);
+  margin-bottom: 2.5rem;
 }
 
 /* ============================================================
-   板块2 · 合作前言（纯白）
+   板块2 · 合作前言：衬线引言
    ============================================================ */
 
 .intro {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
 }
 
 .introTexts {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
+  max-width: 880px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .introText {
-  font-size: var(--fs-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-body);
-  margin: 0 auto;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 2.1;
+  color: var(--color-ink);
+  max-width: none;
 }
 
-/* 首句引言：放大加深，与首页 introText:first-child 对齐 */
+/* 首句：放大 + 首字下沉品牌蓝 */
 .lead {
-  font-size: 1.375rem;
-  line-height: 1.6;
-  color: var(--color-primary);
-  font-weight: 500;
+  font-size: clamp(1.1875rem, 1.7vw, 1.5rem);
+}
+
+.lead::first-letter {
+  font-size: 2.6em;
+  font-weight: 600;
+  color: var(--color-brand);
+  float: left;
+  line-height: 1;
+  margin: 6px 14px 0 0;
 }
 
 /* ============================================================
-   板块3 · 合作方向（暖珠光底 + 高级卡片）
+   板块3 · 合作方向：索引式卡片
    ============================================================ */
 
 .directions {
-  background-color: #F5F4F0;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 .directionList {
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  text-align: left;
+  gap: 2.5rem;
+  counter-reset: direction;
 }
 
-/* 方向卡 — 白底 + 精致阴影 + 顶部金线（对齐首页 .card） */
+/* 方向卡：2px 品牌蓝顶线 + 衬线标题 */
 .directionList li {
-  position: relative;
-  padding: 1.75rem 1.5rem;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 60, 96, 0.08);
-  box-shadow: 0 2px 12px rgba(0, 60, 96, 0.04);
-  font-size: var(--fs-card-title);
-  line-height: var(--line-height-heading);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-heading);
-  letter-spacing: 0.02em;
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  counter-increment: direction;
+  border-top: 2px solid var(--color-brand);
+  padding-top: 1.375rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  color: var(--color-ink);
 }
 
-/* 顶部金线：默认半透明收起，hover 展开 */
+/* 银灰序号 */
 .directionList li::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, var(--color-accent), rgba(184, 147, 58, 0.3));
-  transform: scaleX(0.3);
-  transform-origin: left;
-  opacity: 0.5;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-}
-
-@media (hover: hover) {
-  .directionList li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0, 60, 96, 0.10);
-    border-color: rgba(184, 147, 58, 0.35);
-  }
-
-  .directionList li:hover::before {
-    transform: scaleX(1);
-    opacity: 1;
-  }
+  content: '0' counter(direction);
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  letter-spacing: 0.34em;
+  color: var(--color-silver);
+  margin-bottom: 14px;
 }
 
 /* ============================================================
-   板块4 · 预约表单（纯白）
+   板块4 · 预约表单：细线表单 + 品牌蓝按钮
    ============================================================ */
 
 .formSection {
-  background-color: #ffffff;
+  background-color: var(--color-paper);
+  border-top: 1px solid var(--color-hair);
 }
 
 /* 成功提示 */
@@ -138,12 +112,12 @@
   max-width: 520px;
   margin: 0 auto 2.5rem;
   padding: 1.25rem 1.5rem;
-  background-color: rgba(184, 147, 58, 0.1);
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
-  font-size: var(--fs-caption);
-  line-height: 1.6;
-  border-radius: 4px;
+  background-color: rgba(0, 60, 96, 0.05);
+  border: 1px solid var(--color-brand);
+  color: var(--color-brand);
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
   animation: fadeIn 0.4s ease-out;
 }
 
@@ -156,7 +130,6 @@
 .form {
   max-width: 520px;
   margin: 0 auto;
-  text-align: left;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -169,36 +142,36 @@
 }
 
 .label {
-  font-size: var(--fs-caption);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-dark-gray);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  color: var(--color-ink);
 }
 
 .required {
-  color: var(--color-accent);
+  color: var(--color-brand);
 }
 
-/* 输入框统一风格 */
+/* 输入框：细线编辑风 */
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-size: var(--fs-caption);
-  font-family: var(--font-family);
-  color: var(--color-dark-gray);
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 60, 96, 0.15);
-  border-radius: 4px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 13.5px;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: transparent;
+  border: 1px solid var(--color-hair);
+  border-radius: 2px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
   outline: none;
 }
 
 .input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(184, 147, 58, 0.12);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(0, 60, 96, 0.08);
 }
 
 .input::placeholder {
-  color: rgba(0, 60, 96, 0.3);
+  color: var(--color-silver);
 }
 
 .inputError {
@@ -212,7 +185,7 @@
 /* 下拉选择 */
 .select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238C7340' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23003C60' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -226,7 +199,7 @@
   margin-top: 0.125rem;
 }
 
-/* 提交按钮 — 金底 + hover 升起 + 金色辉光（对齐首页 CTA） */
+/* 提交按钮 — 品牌蓝实底 */
 .submitBtn {
   display: inline-flex;
   align-items: center;
@@ -234,43 +207,44 @@
   width: 100%;
   padding: 1rem 2rem;
   margin-top: 0.5rem;
-  font-size: 1rem;
-  font-weight: var(--font-weight-heading);
-  font-family: var(--font-family);
-  color: #ffffff;
-  background-color: var(--color-accent);
-  border: none;
-  border-radius: 4px;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  font-family: var(--font-sans);
+  color: var(--color-paper);
+  background-color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .submitBtn:hover {
-  background-color: #7A6335;
+  background-color: var(--color-brand-deep);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(184, 147, 58, 0.3);
 }
 
 /* ============================================================
    响应式
    ============================================================ */
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .sectionInner {
-    padding: var(--section-padding-y-mobile) 1.25rem;
+    padding: 4rem 2rem 5rem;
   }
 
-  .lead {
-    font-size: 1.1875rem;
+  .directionList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .sectionInner {
+    padding: 3.5rem 1.25rem 4rem;
   }
 
   .directionList {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .directionList li {
-    padding: 1.5rem 1.25rem;
+    gap: 2rem;
   }
 
   .form {
