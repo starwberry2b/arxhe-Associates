@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模板四 · 砂岩子午 Sandstone Meridian — Arxhe Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#F3EDE1; --sand2:#EBE2D2; --ink:#2B241B; --ink-soft:rgba(43,36,27,.6);
+    --gum:#31473B; --ochre:#A8652F;
+    --serif:"Noto Serif SC",serif; --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--sand);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+  .micro{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--ochre)}
+  /* 导航 */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:26px 56px;position:relative;z-index:5}
+  nav .brand{font-family:var(--serif);font-size:17px;letter-spacing:.12em}
+  nav .brand small{font-family:var(--sans);font-size:11px;letter-spacing:.34em;color:var(--ink-soft);margin-left:12px}
+  nav ul{display:flex;gap:32px;list-style:none}
+  nav a{color:var(--ink-soft);text-decoration:none;font-size:13px;letter-spacing:.16em;transition:color .3s}
+  nav a:hover{color:var(--ochre)}
+  /* Hero：大地色块 + 拱形图像（澳洲地貌母题） */
+  .hero{max-width:1320px;margin:0 auto;padding:40px 56px 120px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;min-height:82vh}
+  h1{font-family:var(--serif);font-weight:300;font-size:clamp(38px,5vw,68px);line-height:1.4;letter-spacing:.05em;margin-top:36px}
+  h1 strong{font-weight:600;color:var(--gum)}
+  .sub{margin-top:38px;font-size:14px;letter-spacing:.18em;color:var(--ink-soft);line-height:2.1}
+  .cta-row{margin-top:52px;display:flex;gap:20px;align-items:center}
+  .cta{display:inline-block;padding:15px 36px;background:var(--gum);color:var(--sand);text-decoration:none;
+       font-size:13px;letter-spacing:.24em;transition:background .3s}
+  .cta:hover{background:#24352C}
+  .cta-ghost{font-size:13px;letter-spacing:.2em;color:var(--ochre);text-decoration:none;border-bottom:1px solid var(--ochre);padding-bottom:4px}
+  .arch{justify-self:end;width:min(30vw,420px)}
+  .arch .frame{border-radius:999px 999px 0 0;overflow:hidden;aspect-ratio:3/4.1;box-shadow:0 30px 60px -30px rgba(43,36,27,.45)}
+  .arch img{width:100%;height:100%;object-fit:cover;display:block}
+  .arch figcaption{margin-top:16px;text-align:center;font-size:10.5px;letter-spacing:.34em;color:var(--ink-soft)}
+  /* 大地色带章节 */
+  section.earth{background:var(--gum);color:var(--sand);padding:120px 56px}
+  .earth-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:96px}
+  .earth .micro{color:var(--sand2)}
+  .earth h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3vw,40px);line-height:1.6;margin-top:28px;letter-spacing:.06em}
+  .earth .lead{font-family:var(--serif);font-size:17.5px;line-height:2.2;color:rgba(243,237,225,.82);align-self:end}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1320px;margin:80px auto 0}
+  .pillar{border-top:1px solid rgba(243,237,225,.3);padding-top:24px}
+  .pillar .k{font-family:var(--serif);font-size:16px;letter-spacing:.16em;color:var(--sand)}
+  .pillar p{margin-top:14px;font-size:13px;line-height:2;color:rgba(243,237,225,.62)}
+  footer{background:var(--sand2);padding:44px 56px;display:flex;justify-content:space-between;
+         font-size:11.5px;letter-spacing:.26em;color:var(--ink-soft)}
+  @media(max-width:900px){nav{padding:20px 24px}nav ul{display:none}.hero{grid-template-columns:1fr;padding:24px 24px 72px}
+    .arch{justify-self:center;width:min(74vw,340px)}section.earth{padding:72px 24px}
+    .earth-inner{grid-template-columns:1fr;gap:40px}.pillars{grid-template-columns:1fr;margin-top:48px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand">Arxhe Associates<small>阿卡联合</small></div>
+  <ul>
+    <li><a href="#">首页</a></li><li><a href="#">关于我们</a></li><li><a href="#">投资策略</a></li>
+    <li><a href="#">核心资产矩阵</a></li><li><a href="#">标杆项目</a></li><li><a href="#">投资人合作</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div>
+    <p class="micro">P&amp;E Family Office · Victoria, Australia</p>
+    <h1>于大地深处，<br>重构<strong>土地价值</strong>边界。</h1>
+    <p class="sub">Arxhe Associates ｜ P&amp;E Family Office 另类土地资产长臂运营平台<br>打造另类不动产超额收益</p>
+    <div class="cta-row">
+      <a class="cta" href="#">了解投资策略</a>
+      <a class="cta-ghost" href="#">核心资产矩阵 →</a>
+    </div>
+  </div>
+  <figure class="arch">
+    <div class="frame"><img src="../bg-aerial-terrain.jpg" alt="澳洲大地地貌航拍"></div>
+    <figcaption>TERRA · VICTORIA · FIG.01</figcaption>
+  </figure>
+</header>
+
+<section class="earth">
+  <div class="earth-inner">
+    <div>
+      <p class="micro">Why Land · Why Now</p>
+      <h2>非传统、复合型、高壁垒 ——<br>被主流市场忽视的土地价值带。</h2>
+    </div>
+    <p class="lead">Arxhe Associates 是 P&amp;E Family Office 专属另类土地资产长臂执行平台，专注澳大利亚维州及泛亚太区域非传统、复合型、高壁垒土地资产投资与运营。</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><p class="k">多元化土地业态</p><p>从特殊合规用地到长周期储备地块，业态组合天然分散单一市场风险。</p></div>
+    <div class="pillar"><p class="k">合规财税架构</p><p>跨法域税务架构优化，以制度确定性守护收益确定性。</p></div>
+    <div class="pillar"><p class="k">抗周期资产储备</p><p>以土地时间价值对冲周期波动，构筑穿越牛熊的收益底盘。</p></div>
+  </div>
+</section>
+
+<footer><span>隶属于 P&amp;E Family Office</span><span>隐私政策 · 免责声明 · 联系我们</span></footer>
+</body>
+</html>

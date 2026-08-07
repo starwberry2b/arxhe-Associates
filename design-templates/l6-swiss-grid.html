@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浅色模板六 · 瑞士蓝格现代风 — Arxhe Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+  /* 版式特征：瑞士国际主义栅格 —— 无衬线为主 / 巨型序号 / 严格栅格 / 蓝色矩形色块 / 左粘附栏题（Studio 系官网常用） */
+  :root{
+    --brand:#003C60; --ink:#1A1A1A; --ink-soft:rgba(26,26,26,.6); --silver:#9F9E9F; --hair:#E4E7E9; --panel:#F6F8F9;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif; --serif:"Noto Serif SC",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#FFF;color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 48px}
+  .grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:32px}
+  /* 导航：品牌蓝色块 + 极简 */
+  nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--hair);
+      display:flex;align-items:stretch}
+  nav .mark{background:var(--brand);padding:20px 28px;display:flex;align-items:center}
+  nav .mark img{height:26px;filter:brightness(0) invert(1)}
+  nav .menu{flex:1;display:flex;justify-content:flex-end;align-items:center;gap:32px;padding:0 48px}
+  nav a{color:var(--ink-soft);text-decoration:none;font-size:13px;letter-spacing:.1em;transition:color .3s}
+  nav a:hover{color:var(--brand)}
+  /* Hero：巨型序号 + 跨栏大标题 + 右下贴图 */
+  .hero{padding:88px 0 96px;border-bottom:1px solid var(--hair)}
+  .hero .idx{grid-column:1/3;font-weight:700;font-size:clamp(64px,7vw,110px);color:var(--brand);line-height:.9;letter-spacing:-.02em}
+  .hero .ttl{grid-column:3/11}
+  .hero .ttl .kicker{font-size:12px;letter-spacing:.36em;color:var(--silver);text-transform:uppercase}
+  h1{font-weight:700;font-size:clamp(40px,5.6vw,80px);line-height:1.24;letter-spacing:.01em;margin-top:28px}
+  h1 span{color:var(--brand)}
+  .hero .meta{grid-column:3/8;margin-top:48px;font-size:14.5px;line-height:2.1;color:var(--ink-soft);max-width:480px}
+  .hero .imgbox{grid-column:8/13;grid-row:2/4;align-self:end}
+  .hero .imgbox img{width:100%;height:340px;object-fit:cover;display:block}
+  .hero .imgbox .bar{height:8px;background:var(--brand);margin-top:0}
+  .hero .tags{grid-column:3/11;margin-top:40px;display:flex;gap:0;flex-wrap:wrap}
+  .hero .tags span{font-size:12.5px;letter-spacing:.16em;padding:10px 20px;border:1px solid var(--hair);margin:-1px 0 0 -1px;color:var(--ink-soft)}
+  .hero .tags span:first-child{background:var(--brand);color:#fff;border-color:var(--brand)}
+  /* 章节：左粘附栏题 + 右内容 */
+  section{padding:96px 0;border-bottom:1px solid var(--hair)}
+  .sec{grid-column:1/4;position:sticky;top:120px;align-self:start}
+  .sec .no{font-weight:700;font-size:15px;color:var(--brand);letter-spacing:.1em}
+  .sec h2{font-weight:700;font-size:clamp(24px,2.6vw,34px);letter-spacing:.02em;margin-top:16px;line-height:1.4}
+  .sec .en{margin-top:14px;font-size:11px;letter-spacing:.3em;color:var(--silver);text-transform:uppercase}
+  .content{grid-column:5/13}
+  /* 简介 */
+  .lead{font-size:clamp(17px,1.7vw,22px);line-height:2.15;font-weight:400}
+  .lead b{color:var(--brand)}
+  .facts{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .facts div{background:#fff;padding:28px}
+  .facts .k{font-size:11px;letter-spacing:.28em;color:var(--silver)}
+  .facts .v{margin-top:10px;font-size:15px;font-weight:500}
+  /* 策略：栅格行 + 巨型序号 */
+  .strat .row{display:grid;grid-template-columns:110px 1fr 1fr;gap:32px;padding:40px 0;border-top:1px solid var(--hair);align-items:start}
+  .strat .num{font-weight:700;font-size:clamp(40px,4.4vw,64px);color:var(--brand);line-height:1;opacity:.92}
+  .strat h3{font-weight:700;font-size:19px;letter-spacing:.02em;padding-top:8px}
+  .strat h3 small{display:block;font-weight:300;font-size:11px;letter-spacing:.26em;color:var(--silver);margin-top:10px;text-transform:uppercase}
+  .strat p{font-size:13.5px;line-height:2.05;color:var(--ink-soft);padding-top:8px}
+  /* 资产：图片 + 色块拼格 */
+  .assets{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  .asset{border:1px solid var(--hair)}
+  .asset img{width:100%;height:200px;object-fit:cover;display:block}
+  .asset .body{padding:28px}
+  .asset .no{display:inline-block;background:var(--brand);color:#fff;font-size:11px;letter-spacing:.24em;padding:6px 14px}
+  .asset h3{font-weight:700;font-size:17px;margin-top:18px}
+  .asset p{margin-top:12px;font-size:13px;line-height:2;color:var(--ink-soft)}
+  /* 项目：品牌蓝大色块 */
+  .project{background:var(--brand);color:#fff;padding:96px 0;border-bottom:none}
+  .project .no{grid-column:1/3;font-weight:700;font-size:clamp(56px,6vw,96px);line-height:.9}
+  .project .txt{grid-column:3/9}
+  .project .kicker{font-size:11px;letter-spacing:.36em;color:rgba(255,255,255,.6);text-transform:uppercase}
+  .project h2{font-weight:700;font-size:clamp(26px,3vw,42px);line-height:1.5;margin-top:24px}
+  .project p{margin-top:24px;font-size:14px;line-height:2.15;color:rgba(255,255,255,.78);max-width:560px}
+  .project .kpi{grid-column:9/13;align-self:end;text-align:right}
+  .project .kpi .n{font-weight:700;font-size:clamp(48px,5.4vw,80px);line-height:1}
+  .project .kpi .t{margin-top:12px;font-size:11.5px;letter-spacing:.3em;color:rgba(255,255,255,.6)}
+  footer{padding:36px 0;display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:.22em;color:var(--silver)}
+  @media(max-width:960px){.wrap{padding:0 24px}nav .menu{display:none}
+    .hero .idx,.hero .ttl,.hero .meta,.hero .imgbox,.hero .tags{grid-column:1/13}
+    .hero .imgbox{grid-row:auto;margin-top:40px}.sec{grid-column:1/13;position:static;margin-bottom:40px}
+    .content{grid-column:1/13}.strat .row{grid-template-columns:1fr;gap:12px}
+    .facts{grid-template-columns:1fr}.assets{grid-template-columns:1fr}
+    .project .no,.project .txt,.project .kpi{grid-column:1/13}.project .kpi{text-align:left;margin-top:40px}}
+</style>
+</head>
+<body>
+<nav>
+  <span class="mark"><img src="../public/logo-standard.svg" alt="Arxhe Associates"></span>
+  <div class="menu">
+    <a href="#">首页</a><a href="#">关于我们</a><a href="#">投资策略</a>
+    <a href="#">核心资产矩阵</a><a href="#">标杆项目</a><a href="#">投资人合作</a>
+  </div>
+</nav>
+
+<div class="wrap">
+<header class="hero grid12">
+  <p class="idx">A<br>A</p>
+  <div class="ttl">
+    <p class="kicker">P&amp;E Family Office — Alternative Land Asset Platform</p>
+    <h1>重构<span>土地价值</span>边界，<br>打造另类不动产超额收益。</h1>
+  </div>
+  <p class="meta">Arxhe Associates ｜ P&amp;E Family Office 另类土地资产长臂运营平台。专注澳大利亚维州及泛亚太区域非传统、复合型、高壁垒土地资产投资与运营。</p>
+  <div class="imgbox"><img src="../bg-aerial-coastal.jpg" alt="维多利亚州海岸土地航拍"><div class="bar"></div></div>
+  <div class="tags"><span>核心优势</span><span>多元化土地业态</span><span>合规财税架构</span><span>抗周期土地资产储备</span></div>
+</header>
+
+<section class="grid12">
+  <div class="sec"><p class="no">01</p><h2>投资策略体系</h2><p class="en">Strategy — Four Pillars</p></div>
+  <div class="content strat">
+    <div class="row"><span class="num">01</span><h3>前瞻性土地储备战略<small>Forward Land Banking</small></h3>
+      <p>以长期主义视角持续收购维州优质原生土地，锁定未来城市扩张、产业升级、算力基建爆发的增量红利。</p></div>
+    <div class="row"><span class="num">02</span><h3>特殊业态税法架构策略<small>Tax-Legal Architecture</small></h3>
+      <p>深度精通维多利亚州土地税法与用地分类规则，通过布局 Caravan Park 特殊法定用地，构建政策免疫资产组合。</p></div>
+    <div class="row"><span class="num">03</span><h3>土地多元化复合开发策略<small>Composite Development</small></h3>
+      <p>算力数据中心基建、大规模土地分割、特色旅居营地、科创低碳复合园区，持续拉高单宗土地 IRR。</p></div>
+    <div class="row"><span class="num">04</span><h3>周期对冲资产配置策略<small>Cycle Hedging</small></h3>
+      <p>「稳定特殊用地现金流资产」+「高增长算力 / 土地开发增值资产」双组合，穿越地产下行周期与产业迭代周期。</p></div>
+  </div>
+</section>
+
+<section class="grid12">
+  <div class="sec"><p class="no">02</p><h2>核心资产矩阵</h2><p class="en">Assets — Scarce Pillars</p></div>
+  <div class="content assets">
+    <div class="asset"><img src="../bg-aerial-coastal.jpg" alt="维州土地储备航拍">
+      <div class="body"><span class="no">PILLAR 01</span><h3>维州长期土地储备池</h3>
+      <p>覆盖维州高潜力扩张区域的原生土地，复合开发与项目孵化的底层核心资产。</p></div></div>
+    <div class="asset"><img src="../bg-aerial-development.jpg" alt="合规营地资产航拍">
+      <div class="body"><span class="no">PILLAR 02 · 核心壁垒</span><h3>Caravan Park 合规营地集群</h3>
+      <p>依托澳洲法定用地属性合法优化土地税，最稳定、最抗政策风险的现金流板块。</p></div></div>
+    <div class="asset"><img src="../bg-aerial-terrain.jpg" alt="算力基建土地航拍">
+      <div class="body"><span class="no">PILLAR 03</span><h3>算力基础设施土地资产</h3>
+      <p>适配 AI、超算、数据中心的复合型土地储备，匹配未来十年算力基建趋势。</p></div></div>
+    <div class="asset"><img src="../bg-site-plan.jpg" alt="产业开发土地规划图">
+      <div class="body"><span class="no">PILLAR 04</span><h3>复合型产业开发土地</h3>
+      <p>可灵活转化为科创园区、低碳产业、文旅配套的弹性资产矩阵。</p></div></div>
+  </div>
+</section>
+</div>
+
+<div class="project">
+  <div class="wrap grid12">
+    <p class="no">03</p>
+    <div class="txt">
+      <p class="kicker">Flagship Project — Ripley View</p>
+      <h2>「土地多元化复合增值模型」的落地验证项目。</h2>
+      <p>通过土地多重业态规划、复合资产运营、现金流多层叠加，验证了另类土地资产模型的超高收益潜力。</p>
+    </div>
+    <div class="kpi"><p class="n">68% GGR</p><p class="t">年化资产增长率 · ANNUALIZED</p></div>
+  </div>
+</div>
+
+<div class="wrap"><footer><span>隶属于 P&amp;E Family Office</span><span>隐私政策 · 免责声明 · 联系我们</span></footer></div>
+</body>
+</html>

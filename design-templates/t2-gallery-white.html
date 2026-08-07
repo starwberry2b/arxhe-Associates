@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模板二 · 白廊 Gallery White — Arxhe Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F3; --ink:#1C1B18; --ink-soft:rgba(28,27,24,.62); --ink-faint:rgba(28,27,24,.38);
+    --bronze:#8C7340; --hair:rgba(28,27,24,.14);
+    --serif:"Noto Serif SC",serif; --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+  .micro{font-size:10.5px;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze)}
+  /* 导航：细线分割的画廊页眉 */
+  nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+      padding:24px 64px;background:var(--paper);border-bottom:1px solid var(--hair)}
+  nav .brand{font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:.12em}
+  nav .brand span{color:var(--ink-faint);margin-left:10px;font-size:12px;letter-spacing:.3em}
+  nav ul{display:flex;gap:34px;list-style:none}
+  nav a{color:var(--ink-soft);text-decoration:none;font-size:12.5px;letter-spacing:.16em;transition:color .3s}
+  nav a:hover{color:var(--bronze)}
+  /* Hero：左文右图编辑排版 */
+  .hero{max-width:1360px;margin:0 auto;padding:96px 64px 110px;display:grid;grid-template-columns:1.05fr .95fr;gap:88px;align-items:end}
+  .hero-left .micro{margin-bottom:40px}
+  h1{font-family:var(--serif);font-weight:200;font-size:clamp(42px,5.4vw,76px);line-height:1.34;letter-spacing:.04em}
+  h1 strong{font-weight:600}
+  .hero-left .sub{margin-top:44px;font-size:14px;letter-spacing:.2em;color:var(--ink-soft);line-height:2.1}
+  .hero-left .tags{margin-top:56px;padding-top:24px;border-top:1px solid var(--hair);
+      font-size:12.5px;letter-spacing:.26em;color:var(--ink-faint)}
+  .hero-left .tags b{color:var(--bronze);font-weight:400;margin:0 12px}
+  figure{position:relative}
+  figure img{width:100%;height:min(66vh,600px);object-fit:cover;display:block}
+  figcaption{display:flex;justify-content:space-between;margin-top:14px;font-size:10.5px;letter-spacing:.3em;color:var(--ink-faint)}
+  /* 章节 */
+  section.block{max-width:1360px;margin:0 auto;padding:120px 64px;border-top:1px solid var(--hair)}
+  .block-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:72px}
+  .block-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,36px);letter-spacing:.06em}
+  .block-head .no{font-size:11px;letter-spacing:.4em;color:var(--bronze)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:96px}
+  .lead{font-family:var(--serif);font-weight:300;font-size:clamp(18px,1.6vw,22px);line-height:2.15}
+  .facts{display:flex;flex-direction:column;justify-content:flex-end}
+  .fact{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--hair)}
+  .fact:first-child{border-top:1px solid var(--hair)}
+  .fact .k{font-size:13px;letter-spacing:.14em;color:var(--ink-soft)}
+  .fact .v{font-family:var(--serif);font-size:15px;color:var(--bronze);letter-spacing:.1em}
+  footer{padding:48px 64px;display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:.26em;color:var(--ink-faint);border-top:1px solid var(--hair)}
+  @media(max-width:900px){nav{padding:18px 24px}nav ul{display:none}.hero{grid-template-columns:1fr;padding:56px 24px;gap:48px}
+    section.block{padding:72px 24px}.cols{grid-template-columns:1fr;gap:48px}footer{padding:32px 24px;flex-direction:column;gap:12px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand">Arxhe Associates<span>阿卡联合</span></div>
+  <ul>
+    <li><a href="#">首页</a></li><li><a href="#">关于我们</a></li><li><a href="#">投资策略</a></li>
+    <li><a href="#">核心资产矩阵</a></li><li><a href="#">标杆项目</a></li><li><a href="#">投资人合作</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-left">
+    <p class="micro">P&amp;E Family Office — Land Asset Platform</p>
+    <h1>重构<strong>土地价值</strong>边界，<br>打造另类不动产超额收益。</h1>
+    <p class="sub">Arxhe Associates ｜ P&amp;E Family Office 另类土地资产长臂运营平台</p>
+    <p class="tags">多元化土地业态<b>·</b>合规财税架构<b>·</b>抗周期土地资产储备</p>
+  </div>
+  <figure>
+    <img src="../bg-aerial-coastal.jpg" alt="澳大利亚维多利亚州海岸线土地航拍">
+    <figcaption><span>VICTORIA, AUSTRALIA</span><span>FIG. 01</span></figcaption>
+  </figure>
+</header>
+
+<section class="block">
+  <div class="block-head"><h2>长臂执行，专注高壁垒土地资产</h2><span class="no">01 / PROFILE</span></div>
+  <div class="cols">
+    <p class="lead">Arxhe Associates 是 P&amp;E Family Office 专属另类土地资产长臂执行平台，专注澳大利亚维州及泛亚太区域非传统、复合型、高壁垒土地资产投资与运营。</p>
+    <div class="facts">
+      <div class="fact"><span class="k">核心区域</span><span class="v">澳大利亚 · 维多利亚州</span></div>
+      <div class="fact"><span class="k">资产属性</span><span class="v">非传统 · 复合型 · 高壁垒</span></div>
+      <div class="fact"><span class="k">收益逻辑</span><span class="v">抗周期土地储备</span></div>
+    </div>
+  </div>
+</section>
+
+<footer><span>隶属于 P&amp;E Family Office</span><span>隐私政策 · 免责声明 · 联系我们</span></footer>
+</body>
+</html>

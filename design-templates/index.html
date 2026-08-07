@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arxhe Associates · 官网风格模板提案（浅色系 · 6 选 1）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--brand:#003C60;--ink:#33302F;--soft:rgba(51,48,47,.6);--faint:#9F9E9F;--hair:#E3E6E8;--paper:#FBFBFA}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;font-weight:300}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 48px}
+  header.top{padding:72px 0 52px;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:start}
+  header.top img{height:64px;margin-top:8px}
+  header.top .k{font-size:11px;letter-spacing:.44em;color:var(--brand);text-transform:uppercase}
+  header.top h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(28px,3.4vw,44px);letter-spacing:.06em;margin-top:20px}
+  header.top p.desc{margin-top:18px;font-size:14px;line-height:2;color:var(--soft);max-width:820px}
+  .palette{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+  .palette span{font-size:11.5px;letter-spacing:.08em;color:var(--soft);border:1px solid var(--hair);padding:7px 14px;background:#fff;display:flex;align-items:center;gap:8px}
+  .palette i{width:12px;height:12px;border-radius:2px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+  .card{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;padding:72px 0;border-bottom:1px solid var(--hair);align-items:center}
+  .card:nth-child(even){direction:rtl}.card:nth-child(even)>*{direction:ltr}
+  .shot{position:relative;border:1px solid var(--hair);background:#fff;box-shadow:0 24px 60px -32px rgba(0,60,96,.25);overflow:hidden}
+  .shot .bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#F1F3F4;border-bottom:1px solid var(--hair)}
+  .shot .bar i{width:9px;height:9px;border-radius:50%;background:#D3D8DA}
+  .shot iframe{width:1280px;height:720px;border:0;transform:scale(.44);transform-origin:0 0;pointer-events:none}
+  .shot .viewport{height:316px;overflow:hidden}
+  .info .no{font-size:11px;letter-spacing:.4em;color:var(--brand)}
+  .info h2{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(24px,2.4vw,32px);letter-spacing:.05em;margin-top:16px}
+  .info .en{font-size:12px;letter-spacing:.3em;color:var(--faint);margin-top:8px;text-transform:uppercase}
+  .info .layout{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.2em;color:var(--brand);background:rgba(0,60,96,.07);padding:6px 14px}
+  .info .desc{margin-top:20px;font-size:14px;line-height:2.05;color:var(--soft)}
+  .tokens{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+  .tokens span{font-size:11.5px;letter-spacing:.1em;color:var(--soft);border:1px solid var(--hair);padding:7px 14px;background:#fff;display:flex;align-items:center;gap:8px}
+  .tokens i{width:12px;height:12px;border-radius:2px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+  .refs{margin-top:22px;font-size:12px;line-height:2;color:var(--faint)}
+  .refs b{color:var(--soft);font-weight:400}
+  .open{display:inline-block;margin-top:28px;padding:13px 34px;background:var(--brand);color:#fff;text-decoration:none;font-size:12.5px;letter-spacing:.24em;transition:background .3s}
+  .open:hover{background:#002A44}
+  footer{padding:56px 0;text-align:center;font-size:12px;letter-spacing:.2em;color:var(--faint);line-height:2.4}
+  @media(max-width:960px){.card{grid-template-columns:1fr;gap:32px}.wrap{padding:0 24px}
+    header.top{grid-template-columns:1fr;gap:24px}.shot iframe{transform:scale(.3)}.shot .viewport{height:216px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <img src="../public/logo-standard.svg" alt="Arxhe Associates 阿卡联合">
+  <div>
+    <p class="k">Arxhe Associates — Website Design Proposals</p>
+    <h1>官网高级感升级 · 浅色系六套风格模板</h1>
+    <p class="desc">六套模板全部为浅色系，配色严格取自 Logo —— 主蓝 #003C60（标识图形）、暖灰 #4D4948（字标）、银灰 #9F9E9F。每套都是「整页多板块」完整预览：首屏 + 数据 + 四大投资策略 + 核心资产矩阵 + Ripley View 标杆项目（年化 68% GGR）+ 页脚，均使用官网真实文案与实拍航拍素材。六套版式语言完全不同，点击任一「全屏查看」体验完整效果。</p>
+    <div class="palette">
+      <span><i style="background:#003C60"></i>#003C60 品牌主蓝（Logo 图形）</span>
+      <span><i style="background:#4D4948"></i>#4D4948 暖灰（Logo 字标）</span>
+      <span><i style="background:#9F9E9F"></i>#9F9E9F 银灰（Logo 辅助）</span>
+      <span><i style="background:#EBF1F5"></i>#EBF1F5 品牌蓝浅底</span>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l1-brand-blue-institutional.html" title="模板一预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 01 · 推荐</p>
+    <h2>品牌蓝机构风</h2><p class="en">Brand Blue Institutional</p>
+    <p class="layout">版式：左文右图首屏 ＋ KPI 报表 ＋ 编号表格 ＋ 2×2 矩阵</p>
+    <p class="desc">蓝顶线导航、四格 KPI 数据报表、S-01~S-04 编号策略表格、2×2 资产矩阵。衬线 600 粗标题、密排表格线，信息密度最高、机构信任感最正，家办 / 资管官网最经典的高级解法。</p>
+    <div class="tokens">
+      <span><i style="background:#FFFFFF"></i>纯白底</span>
+      <span><i style="background:#003C60"></i>#003C60 主蓝</span>
+      <span><i style="background:#EBF1F5"></i>#EBF1F5 浅蓝底</span>
+    </div>
+    <p class="refs"><b>参考：</b>Brookfield 机构路径 · Carlyle / KKR 中性信任色系</p>
+    <a class="open" href="l1-brand-blue-institutional.html">全屏查看 →</a>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l2-gallery-white-blue.html" title="模板二预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 02</p>
+    <h2>白廊 · 杂志编辑风</h2><p class="en">Gallery Editorial</p>
+    <p class="layout">版式：通栏巨标题 ＋ 首字下沉双栏 ＋ 超大数字列表 ＋ 通栏图片带</p>
+    <p class="desc">杂志封面式通栏巨标题（衬线 200 极细字重）、首字下沉双栏简介、壹贰叁肆超大数字策略列表、四栏刊物索引、通栏图片带叠品牌蓝 KPI。字号对比最强烈，「老钱感」最强。</p>
+    <div class="tokens">
+      <span><i style="background:#FAFAF8"></i>#FAFAF8 纸白</span>
+      <span><i style="background:#003C60"></i>#003C60 点缀</span>
+      <span><i style="background:#9F9E9F"></i>#9F9E9F 图注</span>
+    </div>
+    <p class="refs"><b>参考：</b>Sotheby's International Realty · K11 ARTUS 画册美学</p>
+    <a class="open" href="l2-gallery-white-blue.html">全屏查看 →</a>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l3-morning-mist-blue.html" title="模板三预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 03</p>
+    <h2>晨雾蓝灰 · 卡片风</h2><p class="en">Morning Mist Cards</p>
+    <p class="layout">版式：居中首屏 ＋ 大数字圆卡 ＋ 胶囊标签卡 ＋ 图文资产卡 ＋ CTA 带</p>
+    <p class="desc">磨砂玻璃导航、居中呼吸感首屏、68% GGR 大数字圆角 KPI 卡、胶囊标签策略卡、左图右文资产卡、品牌蓝圆角 CTA 带。圆角浮卡 + 柔和阴影，六版中最轻盈现代、内容模块最丰富。</p>
+    <div class="tokens">
+      <span><i style="background:#F2F6F8"></i>#F2F6F8 晨雾</span>
+      <span><i style="background:#003C60"></i>#003C60 主蓝</span>
+      <span><i style="background:#FFFFFF"></i>白色浮卡</span>
+    </div>
+    <p class="refs"><b>参考：</b>Webflow 高端金融模板（Advisora / Makit）· ICONIQ Capital 浅色系</p>
+    <a class="open" href="l3-morning-mist-blue.html">全屏查看 →</a>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l4-arch-horizon.html" title="模板四预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 04</p>
+    <h2>拱门地平线 · Logo 母题</h2><p class="en">Arch Horizon Motif</p>
+    <p class="layout">版式：拱门线稿首屏 ＋ 圆点时间轴 ＋ 拱形图廊 ＋ 地平线收尾</p>
+    <p class="desc">把 Logo「山峰 + 拱门」造型放大为全站图形语言：首屏同心拱门线稿（寓意土地之上的价值穹顶）、壹贰叁肆圆点时间轴策略、四张拱形裁切资产图廊、地平线弧线 CTA。与 Logo 视觉血缘最近，品牌独特性最强。</p>
+    <div class="tokens">
+      <span><i style="background:#FFFFFF"></i>纯白底</span>
+      <span><i style="background:#003C60"></i>#003C60 线稿蓝</span>
+      <span>Logo 拱门母题 SVG</span>
+    </div>
+    <p class="refs"><b>参考：</b>Village Properties 在地品牌化 · 奢侈品牌标识母题延伸</p>
+    <a class="open" href="l4-arch-horizon.html">全屏查看 →</a>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l5-heritage-trust.html" title="模板五预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 05</p>
+    <h2>世家信托 · 经典风</h2><p class="en">Heritage Trust Classic</p>
+    <p class="layout">版式：居中院徽页首 ＋ 双线规 ＋ 罗马编号条目 ＋ 居中 KPI</p>
+    <p class="desc">经典私人银行范式：象牙白底、居中院徽式页首、双细线规、罗马数字（Ⅰ-Ⅳ）策略条目、三柱信条、居中 68% GGR 大 KPI。庄重、对称、正式文书感，历史传承气息最浓的一版。</p>
+    <div class="tokens">
+      <span><i style="background:#F7F4EC"></i>#F7F4EC 象牙白</span>
+      <span><i style="background:#003C60"></i>#003C60 主蓝</span>
+      <span>双细线规 · 罗马编号</span>
+    </div>
+    <p class="refs"><b>参考：</b>Rothschild &amp; Co · Bessemer Trust 经典私人银行体系</p>
+    <a class="open" href="l5-heritage-trust.html">全屏查看 →</a>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="card">
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="viewport"><iframe src="l6-swiss-grid.html" title="模板六预览" scrolling="no"></iframe></div></div>
+  <div class="info">
+    <p class="no">PROPOSAL 06</p>
+    <h2>瑞士蓝格 · 现代风</h2><p class="en">Swiss Grid Modern</p>
+    <p class="layout">版式：12 栏严格栅格 ＋ 巨型序号 ＋ 左粘附栏题 ＋ 品牌蓝色块</p>
+    <p class="desc">瑞士国际主义栅格：无衬线 700 粗标题、巨型序号、左粘附栏题、品牌蓝矩形色块、导航左侧蓝色 Logo 块、项目章节整版品牌蓝反白。六版中最锐利、最当代，设计感最强。</p>
+    <div class="tokens">
+      <span><i style="background:#FFFFFF"></i>纯白底</span>
+      <span><i style="background:#003C60"></i>#003C60 色块蓝</span>
+      <span>12 栏瑞士栅格</span>
+    </div>
+    <p class="refs"><b>参考：</b>瑞士国际主义平面体系 · Studio 系当代机构官网</p>
+    <a class="open" href="l6-swiss-grid.html">全屏查看 →</a>
+  </div>
+</section>
+
+<footer>
+  决策建议：求稳选 01（机构感最正）· 求雅选 02（画册感最强）· 求新选 03（轻盈现代）· 求品牌独特性选 04（Logo 血缘最近）· 求庄重选 05（世家传承感）· 求设计感选 06（瑞士栅格）。<br>
+  推荐组合：01 的版式骨架 + 04 的拱门母题，兼顾「机构信任感」与「品牌独特性」。<br>
+  选定方向后即可按该风格重制首页并逐轮定稿，再向六页整站铺开。
+</footer>
+
+</div>
+</body>
+</html>
