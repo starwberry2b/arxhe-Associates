@@ -5,6 +5,7 @@ import { ABOUT } from '@/lib/translations';
 import PageHero from '@/components/PageHero';
 import RevealSection from '@/components/RevealSection';
 import FigureBand from '@/components/FigureBand';
+import FilmBand from '@/components/FilmBand';
 import styles from './page.module.css';
 
 export default function AboutPage() {
@@ -72,6 +73,14 @@ export default function AboutPage() {
           </div>
         </RevealSection>
       </section>
+
+      {/* 通栏品牌影像长片：创始人叙事（4.6min，点击播放） */}
+      <FilmBand
+        src="/videos/brand-film.mp4"
+        label="Arxhe Associates 品牌影像长片：从墨尔本到纽约的创始人叙事"
+        captionLeft="ARXHE ASSOCIATES"
+        captionRight="FILM. 01"
+      />
     </>
   );
 }

@@ -366,6 +366,15 @@
   object-fit: cover;
 }
 
+/* 品牌循环视频带：铺满 .band，object-fit 与图片版一致 */
+.bandVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .bandVeil {
   position: absolute;
   inset: 0;

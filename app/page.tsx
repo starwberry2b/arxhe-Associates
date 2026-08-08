@@ -214,12 +214,17 @@ export default function HomePage() {
           板块7 · CTA：通栏图片带 + 浅色渐变蒙层 + 品牌蓝大 KPI
           ================================================================ */}
       <section className={styles.band}>
-        <Image
-          src="/images/bg-aerial-terrain.jpg"
-          alt="Ripley View 项目土地航拍"
-          fill
-          sizes="100vw"
-          className={styles.bandImg}
+        {/* 旧站品牌循环片（30s 无声）， poster 回退为原土地航拍图 */}
+        <video
+          src="/videos/brand-loop.mp4"
+          poster="/images/bg-aerial-terrain.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Arxhe Associates 品牌影像：墨尔本天际线、土地航拍与商务意象蒙太奇"
+          className={styles.bandVideo}
         />
         <div className={styles.bandVeil} aria-hidden="true" />
         <RevealSection className={styles.bandOverlay}>

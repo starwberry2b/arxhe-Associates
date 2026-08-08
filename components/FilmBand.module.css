@@ -1,0 +1,46 @@
+/* FilmBand — 通栏杂志式视频带（02 白廊 · 杂志编辑风）
+   全宽视频 + FILM. 编号图注，规范与 FigureBand 一致 */
+
+.figure {
+  margin: 0;
+  background-color: var(--color-paper);
+}
+
+.videoWrap {
+  position: relative;
+  width: 100%;
+  height: min(60vh, 560px);
+  overflow: hidden;
+  background-color: var(--color-ink);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 图注规范：主题大写英文 + FILM. 编号，10.5px letterspacing .3em 银灰 */
+.caption {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 12px 4rem 0;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .videoWrap {
+    height: min(46vh, 340px);
+  }
+
+  .caption {
+    padding: 10px 1.25rem 0;
+  }
+}
