@@ -77,6 +77,7 @@ export default function AboutPage() {
       {/* 通栏品牌影像长片：创始人叙事（4.6min，点击播放） */}
       <FilmBand
         src="/videos/brand-film.mp4"
+        mobileSrc="/videos/brand-film-mobile.mp4"
         label="Arxhe Associates 品牌影像长片：从墨尔本到纽约的创始人叙事"
         captionLeft="ARXHE ASSOCIATES"
         captionRight="FILM. 01"

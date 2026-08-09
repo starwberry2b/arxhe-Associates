@@ -560,6 +560,21 @@
     height: min(44vh, 340px);
   }
 
+  /* 移动端：隐藏左右配图，视频全宽展示 */
+  .tileL,
+  .tileR {
+    display: none;
+  }
+
+  .tileC {
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border: none;
+    box-shadow: 0 12px 40px -20px rgba(51, 48, 47, 0.3);
+  }
+
   .heroFooterSep {
     margin: 0 0.5rem;
   }

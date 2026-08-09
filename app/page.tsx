@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Fragment } from 'react';
 import { useLang } from '@/lib/i18n';
+import { useIsMobile } from '@/lib/useIsMobile';
 import { HOME, STRATEGY, ASSETS, PROJECT } from '@/lib/translations';
 import RevealSection from '@/components/RevealSection';
 import styles from './page.module.css';
@@ -24,6 +25,7 @@ const CN_NUM = ['壹', '贰', '叁', '肆'] as const;
 
 export default function HomePage() {
   const lang = useLang();
+  const isMobile = useIsMobile();
   const t = (b: { zh: string; en: string }) => b[lang];
 
   /* Hero 标题：在中点处自然换行，末行品牌蓝强调 */
@@ -83,12 +85,13 @@ export default function HomePage() {
               </div>
               <div className={`${styles.tile} ${styles.tileC}`}>
                 <video
-                  src="/videos/brand-loop.mp4"
+                  src={isMobile ? '/videos/brand-loop-mobile.mp4' : '/videos/brand-loop.mp4'}
                   poster="/images/brand-reel-poster.jpg"
                   autoPlay
                   muted
                   loop
                   playsInline
+                  preload="auto"
                   onLoadedMetadata={(e) => {
                     e.currentTarget.currentTime = 4;
                   }}
