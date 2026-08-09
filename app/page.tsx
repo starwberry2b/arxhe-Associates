@@ -74,7 +74,7 @@ export default function HomePage() {
             <div className={styles.trio}>
               <div className={`${styles.tile} ${styles.tileL}`}>
                 <Image
-                  src="/images/bg-aerial-coastal.jpg"
+                  src="/images/bg-aerial-coastal-w1920.jpg"
                   alt="澳大利亚维多利亚州海岸线土地航拍"
                   fill
                   sizes="(max-width: 767px) 30vw, 220px"
@@ -243,7 +243,7 @@ export default function HomePage() {
           ================================================================ */}
       <section className={styles.band}>
         <Image
-          src="/images/bg-aerial-terrain.jpg"
+          src="/images/bg-aerial-terrain-w1920.jpg"
           alt="Ripley View 项目土地航拍"
           fill
           sizes="100vw"

@@ -53,7 +53,7 @@ export default function StrategyPage() {
       </section>
       {/* 通栏图片带：土地总体规划图（收尾视觉） */}
       <FigureBand
-        src="/images/bg-site-plan.jpg"
+        src="/images/bg-site-plan-w1920.jpg"
         alt="土地总体规划分区图"
         captionLeft="LAND MASTER PLAN"
         captionRight="FIG. 01"

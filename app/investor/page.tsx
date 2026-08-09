@@ -120,7 +120,7 @@ export default function InvestorPage() {
 
       {/* 通栏图片带：海岸线土地航拍（表单前视觉停顿） */}
       <FigureBand
-        src="/images/bg-aerial-coastal.jpg"
+        src="/images/bg-aerial-coastal-w1920.jpg"
         alt="澳大利亚维多利亚州海岸线土地航拍"
         captionLeft="VICTORIA, AUSTRALIA"
         captionRight="FIG. 01"

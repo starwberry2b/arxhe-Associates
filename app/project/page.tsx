@@ -30,7 +30,7 @@ export default function ProjectPage() {
 
       {/* 通栏图片带：Ripley View 总体规划图 */}
       <FigureBand
-        src="/images/bg-site-plan.jpg"
+        src="/images/bg-site-plan-w1920.jpg"
         alt="Ripley View 项目土地总体规划分区图"
         captionLeft="RIPLEY VIEW, AUSTRALIA"
         captionRight="FIG. 01"
@@ -79,7 +79,7 @@ export default function ProjectPage() {
 
       {/* 通栏图片带：Ripley View 区域土地航拍 */}
       <FigureBand
-        src="/images/bg-aerial-development.jpg"
+        src="/images/bg-aerial-development-w1920.jpg"
         alt="Ripley View 项目区域土地开发航拍"
         captionLeft="RIPLEY VIEW, AUSTRALIA"
         captionRight="FIG. 02"
