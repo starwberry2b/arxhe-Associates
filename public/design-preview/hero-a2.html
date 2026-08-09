@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案 A2 — 通栏三联 · 中轴展开</title>
+<style>
+  :root {
+    --paper: #FAFAF8; --ink: #33302F; --brand: #003C60;
+    --silver: #9F9E9F; --hair: rgba(51,48,47,.13);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink);
+    font-family: "Noto Serif SC","Songti SC",SimSun,serif; }
+  .micro { font-size: 10.5px; letter-spacing: .44em; text-transform: uppercase; color: var(--brand); }
+  .vol { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--silver); }
+
+  .hero { max-width: 1360px; margin: 0 auto; padding: 5rem 4rem 6rem; }
+  .heroTop { display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--hair); padding-bottom: 1.25rem; }
+  h1 { font-weight: 200; font-size: clamp(2.6rem, 5.4vw, 4.6rem); line-height: 1.22;
+    letter-spacing: .015em; margin-top: 3.5rem; }
+  h1 strong { font-weight: 600; color: var(--brand); }
+
+  .subRow { display: flex; justify-content: space-between; align-items: baseline;
+    gap: 3rem; margin: 3.5rem 0 3rem; }
+  .subtitle { font-size: 14.5px; letter-spacing: .18em; color: #55514F; line-height: 2; max-width: 520px; }
+  .footer { font-size: 12.5px; letter-spacing: .22em; color: var(--silver);
+    line-height: 2; max-width: 380px; text-align: right; }
+  .footer b { color: var(--brand); font-weight: 400; }
+
+  /* ---- 通栏三联：视频居中最高，两侧图片基线对齐、细线分隔 ---- */
+  .trio { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 1px;
+    background: var(--hair); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    align-items: end; }
+  .cell { position: relative; overflow: hidden; background: var(--ink); }
+  .cell img, .cell video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cellSide { height: 300px; background: var(--paper); }
+  .cellSide img { filter: grayscale(.3) contrast(1.02); height: 100%; }
+  .cellC { height: 400px; }
+  .cellC video { height: 100%; }
+
+  .figCaption { display: flex; justify-content: space-between;
+    margin-top: 12px; font-size: 10.5px; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--silver); }
+
+  .back { position: fixed; top: 1.25rem; left: 1.5rem; z-index: 10; font-size: 11px;
+    letter-spacing: .2em; color: var(--silver); text-decoration: none; text-transform: uppercase; }
+  .back:hover { color: var(--brand); }
+
+  @media (max-width: 900px) {
+    .hero { padding: 3.5rem 1.25rem 4rem; }
+    .subRow { flex-direction: column; gap: 1.25rem; }
+    .footer { text-align: left; }
+    .trio { grid-template-columns: 1fr; }
+    .cellSide { height: 200px; }
+    .cellC { height: 260px; }
+  }
+</style>
+</head>
+<body>
+<a class="back" href="./index.html">← 返回方案列表</a>
+
+<section class="hero">
+  <div class="heroTop">
+    <span class="micro">P&amp;E Family Office</span>
+    <span class="vol">VOL. 2026 · VICTORIA</span>
+  </div>
+
+  <h1>Redefining Land Value Frontiers<br>
+    <strong>Unlocking Excess Returns in Alternative Real Estate</strong></h1>
+
+  <div class="subRow">
+    <p class="subtitle">Arxhe Associates | P&amp;E Family Office — Extended Land Asset Execution Platform</p>
+    <p class="footer">Diversified Land Formats <b>·</b> Compliant Tax Structures <b>·</b> Counter-Cyclical Land Asset Reserves</p>
+  </div>
+
+  <div class="trio">
+    <div class="cell cellSide"><img src="../images/bg-aerial-development.jpg" alt="待开发土地网格航拍"></div>
+    <div class="cell cellC">
+      <video src="../videos/brand-loop.mp4" poster="../images/brand-reel-poster.jpg"
+             autoplay muted loop playsInline></video>
+    </div>
+    <div class="cell cellSide"><img src="../images/bg-aerial-coastal.jpg" alt="海岸线土地航拍"></div>
+  </div>
+  <div class="figCaption"><span>VICTORIA, AUSTRALIA — FIG. 01 / 02</span><span>BRAND REEL — FILM. 02</span></div>
+</section>
+</body>
+</html>

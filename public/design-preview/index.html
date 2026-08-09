@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页视频排版方案 — 设计预览</title>
+<style>
+  :root {
+    --paper: #FAFAF8; --ink: #33302F; --brand: #003C60;
+    --silver: #9F9E9F; --hair: rgba(51,48,47,.13);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: "Noto Serif SC","Songti SC",SimSun,serif;
+    display: flex; justify-content: center; padding: 6rem 1.5rem;
+  }
+  .menu { max-width: 720px; width: 100%; }
+  h1 { font-weight: 200; font-size: 2rem; letter-spacing: .06em; margin-bottom: .75rem; }
+  .sub { font-size: 12px; letter-spacing: .22em; color: var(--silver); text-transform: uppercase; margin-bottom: 3.5rem; }
+  a.item {
+    display: block; text-decoration: none; color: var(--ink);
+    border-top: 1px solid var(--hair); padding: 1.75rem .25rem;
+    transition: background .2s ease;
+  }
+  a.item:last-child { border-bottom: 1px solid var(--hair); }
+  a.item:hover { background: rgba(0,60,96,.03); }
+  .no { font-size: 11px; letter-spacing: .3em; color: var(--brand); text-transform: uppercase; }
+  .name { font-size: 1.35rem; font-weight: 400; margin: .5rem 0 .4rem; }
+  .desc { font-size: 13px; color: var(--silver); letter-spacing: .05em; line-height: 1.9; }
+</style>
+</head>
+<body>
+  <div class="menu">
+    <h1>首页视频排版 · 三个方案</h1>
+    <p class="sub">Design Preview — Hero × Brand Reel</p>
+
+    <a class="item" href="./hero-p1.html">
+      <span class="no">配图方案 1 · 新</span>
+      <p class="name">土地叙事（开发地块 + 海岸线）</p>
+      <p class="desc">两侧用项目现有土地航拍，主题最稳，与全站 FIG. 图片体系一致。</p>
+    </a>
+    <a class="item" href="./hero-p2.html">
+      <span class="no">配图方案 2 · 新</span>
+      <p class="name">城市叙事（公路航拍 + 墨尔本天际线）</p>
+      <p class="desc">两侧取自品牌长片帧，电影感彩色画面，与中央视频同源同质。</p>
+    </a>
+    <a class="item" href="./hero-p3.html">
+      <span class="no">配图方案 3 · 新</span>
+      <p class="name">黑白人文（办公室 + 车内人物）</p>
+      <p class="desc">两侧为品牌片黑白帧，最贴近旧站黑白拼贴气质，人文感最强。</p>
+    </a>
+    <a class="item" href="./hero-p4.html">
+      <span class="no">配图方案 4 · 定稿组合</span>
+      <p class="name">海岸 × 天际线（海岸线航拍 + 墨尔本天际线）</p>
+      <p class="desc">左侧海岸线土地航拍、右侧品牌长片天际线帧，中央视频为主体。</p>
+    </a>
+    <a class="item" href="./hero-a1.html">
+      <span class="no">方案 A1</span>
+      <p class="name">栏内三联 · 错落叠放（旧比例）</p>
+      <p class="desc">视频与两侧图片比例接近的初版，供与新比例对比。</p>
+    </a>
+    <a class="item" href="./hero-a2.html">
+      <span class="no">方案 A2 · 新</span>
+      <p class="name">通栏三联 · 中轴展开</p>
+      <p class="desc">副文案行之下整行展开：视频居中最高，两侧图片基线对齐、细线分隔。仪式感强，接近杂志跨页三联图。</p>
+    </a>
+    <a class="item" href="./hero-a3.html">
+      <span class="no">方案 A3 · 新</span>
+      <p class="name">栏内三联 · 竖幅画廊</p>
+      <p class="desc">右侧栏内三枚等高竖框并排（图—视频—图），细线对页分隔。最克制对称，与 FIG. 图注体系无缝。</p>
+    </a>
+    <a class="item" href="./hero-a.html">
+      <span class="no">方案 A</span>
+      <p class="name">编辑拼贴 · 还原旧站错落感</p>
+      <p class="desc">主视频居中、两枚小帧错位叠放，三联画构图。最接近旧站版式，黑白低饱和处理融入纸白编辑风。</p>
+    </a>
+    <a class="item" href="./hero-b.html">
+      <span class="no">方案 B</span>
+      <p class="name">通栏影像带 · 杂志跨页</p>
+      <p class="desc">巨标题之下整幅横贯影像带，自动静音循环，如杂志跨页大图。气场最强，文字让位于影像。</p>
+    </a>
+    <a class="item" href="./hero-c.html">
+      <span class="no">方案 C</span>
+      <p class="name">双联并置 · 图与影像对页</p>
+      <p class="desc">右侧等宽双联：左静态航拍、右视频（点击播放），细线分隔。最克制，最贴合现行 FIG. 图注体系。</p>
+    </a>
+  </div>
+</body>
+</html>

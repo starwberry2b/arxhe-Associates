@@ -69,18 +69,46 @@ export default function HomePage() {
             </p>
           </div>
 
+          {/* 编辑拼贴三联：左海岸线航拍 / 中央品牌短片 / 右墨尔本天际线长片帧 */}
           <figure className={styles.heroFigure}>
-            <Image
-              src="/images/bg-aerial-coastal.jpg"
-              alt="澳大利亚维多利亚州海岸线土地航拍"
-              width={1120}
-              height={840}
-              priority
-              className={styles.heroImg}
-            />
+            <div className={styles.trio}>
+              <div className={`${styles.tile} ${styles.tileL}`}>
+                <Image
+                  src="/images/bg-aerial-coastal.jpg"
+                  alt="澳大利亚维多利亚州海岸线土地航拍"
+                  fill
+                  sizes="(max-width: 767px) 30vw, 220px"
+                  className={styles.tileImg}
+                />
+              </div>
+              <div className={`${styles.tile} ${styles.tileC}`}>
+                <video
+                  src="/videos/brand-loop.mp4"
+                  poster="/images/brand-reel-poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedMetadata={(e) => {
+                    e.currentTarget.currentTime = 4;
+                  }}
+                  aria-label="Arxhe Associates 品牌短片：墨尔本天际线、土地航拍与商务意象蒙太奇"
+                  className={styles.tileVideo}
+                />
+              </div>
+              <div className={`${styles.tile} ${styles.tileR}`}>
+                <Image
+                  src="/images/brand-film-skyline.jpg"
+                  alt="品牌片帧：墨尔本天际线"
+                  fill
+                  sizes="(max-width: 767px) 30vw, 220px"
+                  className={styles.tileImg}
+                />
+              </div>
+            </div>
             <figcaption className={styles.figCaption}>
               <span>VICTORIA, AUSTRALIA</span>
-              <span>FIG. 01</span>
+              <span>FIG. 01 — BRAND REEL</span>
             </figcaption>
           </figure>
         </div>
@@ -214,17 +242,12 @@ export default function HomePage() {
           板块7 · CTA：通栏图片带 + 浅色渐变蒙层 + 品牌蓝大 KPI
           ================================================================ */}
       <section className={styles.band}>
-        {/* 旧站品牌循环片（30s 无声）， poster 回退为原土地航拍图 */}
-        <video
-          src="/videos/brand-loop.mp4"
-          poster="/images/bg-aerial-terrain.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Arxhe Associates 品牌影像：墨尔本天际线、土地航拍与商务意象蒙太奇"
-          className={styles.bandVideo}
+        <Image
+          src="/images/bg-aerial-terrain.jpg"
+          alt="Ripley View 项目土地航拍"
+          fill
+          sizes="100vw"
+          className={styles.bandImg}
         />
         <div className={styles.bandVeil} aria-hidden="true" />
         <RevealSection className={styles.bandOverlay}>
