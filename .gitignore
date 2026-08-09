@@ -15,3 +15,5 @@ Thumbs.db
 *.log
 .kimi/tmp/
 docs/
+_verify/
+video/

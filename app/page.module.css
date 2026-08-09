@@ -96,13 +96,6 @@
   margin: 0;
 }
 
-.heroImg {
-  width: 100%;
-  height: min(46vh, 420px);
-  object-fit: cover;
-  display: block;
-}
-
 /* ---- Hero 编辑拼贴三联：视频占主体，两侧小图点缀 ---- */
 .trio {
   position: relative;
