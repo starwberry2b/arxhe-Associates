@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目图片候选方案 - Arxhe Associates</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 40px;
+  }
+  .section { margin-bottom: 60px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .section-title .badge {
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    background: #1a1a1a;
+    color: #aaa;
+    border: 1px solid #333;
+  }
+  .section-title .new-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #1a4a2a;
+    color: #4ade80;
+    border: 1px solid #2ecc71;
+  }
+  .content-analysis {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .content-analysis h3 {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  .content-analysis .context {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .content-analysis .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .content-analysis .kw {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #1a2a1a;
+    color: #6bcb77;
+    border: 1px solid #2a3a2a;
+  }
+  .current-image {
+    margin-bottom: 32px;
+    padding: 16px;
+    background: #111;
+    border-radius: 8px;
+    border: 1px solid #222;
+  }
+  .current-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+  .current-image .label {
+    font-size: 13px;
+    color: #888;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .current-image .label::before {
+    content: '📍';
+    font-size: 14px;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .card:hover {
+    border-color: #444;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+  .card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+  .card .info { padding: 14px 16px; }
+  .card .info .name {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card .info .style-tag {
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 3px;
+    background: #1a1a2a;
+    color: #6b8acb;
+    border: 1px solid #2a2a3a;
+  }
+  .card .info .desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .card .info .relevance {
+    font-size: 12px;
+    color: #6bcb77;
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid #1a1a1a;
+  }
+  .card .info .relevance::before { content: '🎯 '; }
+  .card .num {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+  .card .pick-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(46, 204, 113, 0.9);
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card:hover .pick-btn { opacity: 1; }
+  .card.selected {
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 2px #2ecc71;
+  }
+  .card.selected .pick-btn {
+    opacity: 1;
+    background: #2ecc71;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #333, transparent);
+    margin: 60px 0;
+  }
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #444;
+    font-size: 13px;
+  }
+  @media (max-width: 600px) {
+    .gallery { grid-template-columns: 1fr; }
+    .card img { height: 200px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>项目图片候选方案</h1>
+  <p class="subtitle">基于 Ripley View 项目（ripleyview.com.au）实际内容筛选 — 贴近住宅社区开发与生态保育主题</p>
+
+  <!-- FIG. 01 -->
+  <div class="section">
+    <div class="section-title">
+      FIG. 01 — 总体规划图候选方案
+      <span class="badge">位于「核心创新」与「区位优势」之间</span>
+      <span class="new-tag">6种风格</span>
+    </div>
+
+    <div class="content-analysis">
+      <h3>📍 图片位置内容分析（基于 ripleyview.com.au 项目实际内容）</h3>
+      <p class="context">
+        <strong>项目定位：</strong>Ripley View 是位于昆士兰 Ripley Valley 的住宅土地开发项目，由小团队精心打造，提供住宅地块，强调成熟树木、林荫街道、社区公园与家庭友好环境。<br>
+        <strong>区位优势：</strong>西邻 Ipswich 成熟城区（历史底蕴、叶茂街道），紧邻 Ripley Town Centre（日常配套），东接 Springfield 规划新城（教育、医疗、商业），规划铁路连接 Brisbane CBD。<br>
+        <strong>图片标注：</strong>RIPLEY VIEW, AUSTRALIA / FIG. 01 — 总体规划图
+      </p>
+      <div class="keywords">
+        <span class="kw">住宅社区</span>
+        <span class="kw">土地开发</span>
+        <span class="kw">林荫街道</span>
+        <span class="kw">Ripley Valley</span>
+        <span class="kw">总体规划</span>
+        <span class="kw">家庭社区</span>
+      </div>
+    </div>
+
+    <div class="current-image">
+      <img src="public/images/bg-site-plan-w1920.jpg" alt="当前 FIG. 01">
+      <div class="label">当前图片 — Camden Estates 水彩风格规划图</div>
+    </div>
+
+    <div class="gallery">
+      <div class="card" data-id="fig01-1">
+        <span class="num">01</span>
+        <img src="public/images/candidates/fig01-v5-tree-lined-street.jpg" alt="tree lined street">
+        <div class="info">
+          <div class="name">林荫住宅街道 <span class="style-tag">街景·林荫道</span></div>
+          <div class="desc">成熟大树排列在住宅街道两侧，绿荫成廊，安静祥和的社区氛围。</div>
+          <div class="relevance">直接呼应项目"成熟树木与自然环绕"和"林荫街道"的核心理念，展示 Ripley View 的社区街道质感</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig01-2">
+        <span class="num">02</span>
+        <img src="public/images/candidates/fig01-v5-aerial-community-trees.jpg" alt="aerial community trees">
+        <div class="info">
+          <div class="name">航拍绿荫社区 <span class="style-tag">航拍·社区全貌</span></div>
+          <div class="desc">俯瞰被绿树环绕的住宅社区，街道与房屋有序布局，大面积绿化。</div>
+          <div class="relevance">航拍视角展示整体规划社区格局，呼应"总体规划"和 Ripley Valley 土地开发的社区全貌</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig01-3">
+        <span class="num">03</span>
+        <img src="public/images/candidates/fig01-v5-modern-houses.jpg" alt="modern houses">
+        <div class="info">
+          <div class="name">现代住宅开发 <span class="style-tag">实景·现代住宅</span></div>
+          <div class="desc">灰顶砖墙现代住宅整齐排列，新建社区的开发实景。</div>
+          <div class="relevance">直接展示住宅土地开发成果，呼应项目"提供住宅地块"和"精心打造的社区"定位</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig01-4">
+        <span class="num">04</span>
+        <img src="public/images/candidates/fig01-v5-street-houses-trees.jpg" alt="street houses trees">
+        <div class="info">
+          <div class="name">绿树掩映的住宅街 <span class="style-tag">街景·住宅区</span></div>
+          <div class="desc">街道两侧绿树与住宅和谐共存，房屋在树荫间若隐若现，宜居感强。</div>
+          <div class="relevance">呼应项目"景观设计衬托住宅而非竞争"的理念，展示 Ripley View 追求的居住环境</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig01-5">
+        <span class="num">05</span>
+        <img src="public/images/candidates/fig01-v5-suburban-houses-sky.jpg" alt="suburban houses sky">
+        <div class="info">
+          <div class="name">蓝天下的郊区住宅 <span class="style-tag">广角·住宅区</span></div>
+          <div class="desc">棕白相间的住宅在蓝天白云下排列，开阔明亮，澳洲郊区典型风貌。</div>
+          <div class="relevance">展示澳洲典型郊区住宅风貌，呼应 Ripley Valley 的地理特征和住宅开发定位</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig01-6">
+        <span class="num">06</span>
+        <img src="public/images/candidates/fig01-v5-townhouses-trees.jpg" alt="townhouses trees">
+        <div class="info">
+          <div class="name">联排住宅与绿树 <span class="style-tag">街景·联排住宅</span></div>
+          <div class="desc">现代联排住宅搭配围栏与树木，整洁有序的社区边界感。</div>
+          <div class="relevance">展示住宅开发的多样性，呼应"街道吸引力经久不衰"和社区边界设计的理念</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FIG. 02 -->
+  <div class="section">
+    <div class="section-title">
+      FIG. 02 — 生态保育图片候选方案
+      <span class="badge">位于「区位优势」与「生态保育」之间</span>
+      <span class="new-tag">6种风格</span>
+    </div>
+
+    <div class="content-analysis">
+      <h3>📍 图片位置内容分析（基于 ripleyview.com.au 项目实际内容）</h3>
+      <p class="context">
+        <strong>项目生态理念：</strong>"成熟树木与自然环绕创造荫凉与宁静"，"景观设计衬托住宅而非与之竞争"，"街道吸引力经久不衰"。<br>
+        <strong>社区环境：</strong>Ripley View 强调在住宅社区内保留自然元素 — 成熟大树、绿带走廊、公园绿地，让居民"回到一个宁静的地方"。<br>
+        <strong>图片标注：</strong>RIPLEY VIEW, AUSTRALIA / FIG. 02
+      </p>
+      <div class="keywords">
+        <span class="kw">成熟树木</span>
+        <span class="kw">社区公园</span>
+        <span class="kw">绿地空间</span>
+        <span class="kw">自然环绕</span>
+        <span class="kw">荫凉宁静</span>
+        <span class="kw">景观设计</span>
+      </div>
+    </div>
+
+    <div class="current-image">
+      <img src="public/images/bg-aerial-development-w1920.jpg" alt="当前 FIG. 02">
+      <div class="label">当前图片 — AI 生成航拍图</div>
+    </div>
+
+    <div class="gallery">
+      <div class="card" data-id="fig02-1">
+        <span class="num">01</span>
+        <img src="public/images/candidates/fig02-v5-green-field-trees.jpg" alt="green field trees">
+        <div class="info">
+          <div class="name">开阔绿地与成树 <span class="style-tag">公园·开阔绿地</span></div>
+          <div class="desc">大片绿色草坪上散布着成熟树木，开阔宁静，典型的社区公园景观。</div>
+          <div class="relevance">直接呼应项目"成熟树木与自然环绕"和"绿地空间"理念，展示社区内的生态保育区</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig02-2">
+        <span class="num">02</span>
+        <img src="public/images/candidates/fig02-v5-park-bench.jpg" alt="park bench">
+        <div class="info">
+          <div class="name">公园长椅与绿荫 <span class="style-tag">公园·休憩场景</span></div>
+          <div class="desc">长椅静置于公园绿荫中，阳光斑驳，宁静的社区休憩空间。</div>
+          <div class="relevance">呼应项目"回到一个宁静的地方"和社区公园的生活场景，展示居民日常的生态空间</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig02-3">
+        <span class="num">03</span>
+        <img src="public/images/candidates/fig02-v5-solitary-tree-field.jpg" alt="solitary tree field">
+        <div class="info">
+          <div class="name">孤树草坪 <span class="style-tag">绿地·单株大树</span></div>
+          <div class="desc">开阔草坪中央一棵成熟大树，独立而壮观，自然焦点的完美呈现。</div>
+          <div class="relevance">呼应项目"保留成熟树木"的理念，单株大树成为社区绿地的视觉焦点和生态标志</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig02-4">
+        <span class="num">04</span>
+        <img src="public/images/candidates/fig02-v5-green-trees-grass.jpg" alt="green trees grass">
+        <div class="info">
+          <div class="name">绿树成荫的草坪 <span class="style-tag">绿地·树荫草坪</span></div>
+          <div class="desc">成排绿树投下荫凉，覆盖翠绿草坪，典型的社区绿带走廊。</div>
+          <div class="relevance">直接呼应"创造荫凉与宁静"和"绿带贯穿社区"的项目描述，展示社区内的生态走廊</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig02-5">
+        <span class="num">05</span>
+        <img src="public/images/candidates/fig02-v5-sun-tree.jpg" alt="sun tree">
+        <div class="info">
+          <div class="name">阳光照耀的大树 <span class="style-tag">光影·阳光大树</span></div>
+          <div class="desc">阳光透过茂密树冠洒下，光影斑驳，大树的生命力与温暖并存。</div>
+          <div class="relevance">呼应"自然塑造了规划"的理念，光影效果展示成熟树木在社区中的生态与美学价值</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+
+      <div class="card" data-id="fig02-6">
+        <span class="num">06</span>
+        <img src="public/images/candidates/fig02-v5-people-green-space.jpg" alt="people green space">
+        <div class="info">
+          <div class="name">人在绿地漫步 <span class="style-tag">公园·生活场景</span></div>
+          <div class="desc">人们在翠绿草地上漫步，周围绿树环绕，社区生活的自然场景。</div>
+          <div class="relevance">展示居民在社区绿地中的真实生活，呼应"街道安全感"和"社区营造"的项目核心价值</div>
+        </div>
+        <button class="pick-btn" onclick="selectCard(this)">选择</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    所有图片来源 Unsplash 免版权图库 | 基于网页内容分析筛选 — Arxhe Associates Project Page
+  </div>
+</div>
+
+<script>
+  function selectCard(btn) {
+    const card = btn.closest('.card');
+    const section = card.closest('.section');
+    section.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const name = card.querySelector('.name').textContent;
+    const num = card.querySelector('.num').textContent;
+    console.log('Selected:', num, name);
+  }
+
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('click', function() {
+      window.open(this.src, '_blank');
+    });
+  });
+</script>
+</body>
+</html>
