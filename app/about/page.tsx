@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       {/* 通栏图片带：待开发土地航拍 */}
       <FigureBand
-        src="/images/bg-aerial-development-w1920.jpg"
+        src="/images/bg-site-plan-w1920.png"
         alt="维州高潜力扩张区域待开发土地网格航拍"
         captionLeft="VICTORIA, AUSTRALIA"
         captionRight="FIG. 01"

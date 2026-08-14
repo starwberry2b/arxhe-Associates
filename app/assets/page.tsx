@@ -18,7 +18,7 @@ export default function AssetsPage() {
 
       {/* 通栏图片带：原生土地地貌航拍 */}
       <FigureBand
-        src="/images/bg-aerial-terrain-w1920.jpg"
+        src="/images/596c406df3d10809577e81d198971c82.jpg"
         alt="维州原生土地储备地貌航拍"
         captionLeft="VICTORIA, AUSTRALIA"
         captionRight="FIG. 01"

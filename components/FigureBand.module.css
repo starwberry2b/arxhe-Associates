@@ -9,12 +9,14 @@
 .imgWrap {
   position: relative;
   width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
   height: min(52vh, 480px);
   overflow: hidden;
 }
 
 .img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* 图注规范：地点大写英文 + FIG. 编号，10.5px letterspacing .3em 银灰 */

@@ -403,10 +403,11 @@
   position: relative;
   height: min(72vh, 640px);
   overflow: hidden;
+  background-color: var(--color-paper);
 }
 
 .bandImg {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .bandVeil {

@@ -246,7 +246,7 @@ export default function HomePage() {
           ================================================================ */}
       <section className={styles.band}>
         <Image
-          src="/images/bg-aerial-terrain-w1920.jpg"
+          src="/images/596c406df3d10809577e81d198971c82.jpg"
           alt="Ripley View 项目土地航拍"
           fill
           sizes="100vw"
