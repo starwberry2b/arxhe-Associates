@@ -18,5 +18,26 @@ docs/
 _verify/
 video/
 
+# IDE 配置
+.trae/
+
+# 设计草稿与截图（工作产物，不纳入版本控制）
+design-d*.html
+design-d*.png
+hero-bg-*.png
+hero-biz-bg-*.png
+hero-content-bg-*.png
+hero-backgrounds-*.html
+hero-backgrounds-*.png
+hero-business-backgrounds.html
+hero-business-bg-full.png
+hero-content-backgrounds.html
+hero-content-bg-full.png
+homepage-*.png
+homepage-*.html
+
+# 打包产物
+*.tar.gz
+
 # 音频备份（体积大，本地保留即可）
 public/videos/brand-film-with-audio.mp4
