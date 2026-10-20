@@ -43,7 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* 预拉取首页 Hero 视频海报图（68KB，秒显） */}
-        <link rel="preload" as="image" href="/images/brand-reel-poster.jpg" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/brand-reel-poster-hd.jpg" fetchPriority="high" />
       </head>
       <body>
         <I18nProvider>
