@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useLang } from '@/lib/i18n';
 import { useIsMobile } from '@/lib/useIsMobile';
 import { HOME, STRATEGY, ASSETS, PROJECT } from '@/lib/translations';
@@ -29,6 +29,19 @@ export default function HomePage() {
   /* 挂载后再渲染 video，避免手机端先误下载桌面大文件 */
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  /* 微信 X5 等内嵌浏览器会拦 autoplay 属性，需主动 play() + 首次触碰兜底 */
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (!mounted) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.play().catch(() => { /* 被拦时等用户触碰 */ });
+    const resume = () => v.play().catch(() => {});
+    document.addEventListener('touchstart', resume, { once: true });
+    return () => document.removeEventListener('touchstart', resume);
+  }, [mounted]);
+  /* 微信内核只给 MP4（对 webm 的兼容性声明不可靠） */
+  const isWeChat = mounted && /MicroMessenger/i.test(navigator.userAgent);
   const t = (b: { zh: string; en: string }) => b[lang];
 
   /* Hero 标题：在中点处自然换行，末行品牌蓝强调 */
@@ -89,25 +102,32 @@ export default function HomePage() {
               <div className={`${styles.tile} ${styles.tileC}`}>
                 {mounted && (
                   <video
+                    ref={videoRef}
                     poster="/images/brand-reel-poster.jpg"
                     autoPlay
                     muted
                     loop
                     playsInline
+                    {...{ 'x5-playsinline': 'true', 'webkit-playsinline': 'true', 'x5-video-player-type': 'h5-page' }}
                     preload="auto"
                     onLoadedMetadata={(e) => {
                       e.currentTarget.currentTime = 4;
                     }}
+                    onClick={(e) => e.currentTarget.play()}
                     aria-label="Arxhe Associates 品牌短片：墨尔本天际线、土地航拍与商务意象蒙太奇"
                     className={styles.tileVideo}
                   >
                     {isMobile ? (
-                      <>
-                        {/* VP9 540p：同画质体积更小，安卓/Chrome 优先 */}
-                        <source src="/videos/brand-loop-mobile-hq.webm" type="video/webm" />
-                        {/* H.264 540p：iOS Safari 兜底 */}
+                      isWeChat ? (
                         <source src="/videos/brand-loop-mobile-540.mp4" type="video/mp4" />
-                      </>
+                      ) : (
+                        <>
+                          {/* VP9 540p：同画质体积更小，安卓/Chrome 优先 */}
+                          <source src="/videos/brand-loop-mobile-hq.webm" type="video/webm" />
+                          {/* H.264 540p：iOS Safari 兜底 */}
+                          <source src="/videos/brand-loop-mobile-540.mp4" type="video/mp4" />
+                        </>
+                      )
                     ) : (
                       <source src="/videos/brand-loop-hq.mp4" type="video/mp4" />
                     )}
