@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useLang } from '@/lib/i18n';
 import { useIsMobile } from '@/lib/useIsMobile';
 import { HOME, STRATEGY, ASSETS, PROJECT } from '@/lib/translations';
@@ -26,6 +26,9 @@ const CN_NUM = ['壹', '贰', '叁', '肆'] as const;
 export default function HomePage() {
   const lang = useLang();
   const isMobile = useIsMobile();
+  /* 挂载后再渲染 video，避免手机端先误下载桌面大文件 */
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const t = (b: { zh: string; en: string }) => b[lang];
 
   /* Hero 标题：在中点处自然换行，末行品牌蓝强调 */
@@ -84,20 +87,32 @@ export default function HomePage() {
                 />
               </div>
               <div className={`${styles.tile} ${styles.tileC}`}>
-                <video
-                  src={isMobile ? '/videos/brand-loop-mobile.mp4' : '/videos/brand-loop.mp4'}
-                  poster="/images/brand-reel-poster.jpg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  onLoadedMetadata={(e) => {
-                    e.currentTarget.currentTime = 4;
-                  }}
-                  aria-label="Arxhe Associates 品牌短片：墨尔本天际线、土地航拍与商务意象蒙太奇"
-                  className={styles.tileVideo}
-                />
+                {mounted && (
+                  <video
+                    poster="/images/brand-reel-poster.jpg"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    onLoadedMetadata={(e) => {
+                      e.currentTarget.currentTime = 4;
+                    }}
+                    aria-label="Arxhe Associates 品牌短片：墨尔本天际线、土地航拍与商务意象蒙太奇"
+                    className={styles.tileVideo}
+                  >
+                    {isMobile ? (
+                      <>
+                        {/* VP9 540p：同画质体积更小，安卓/Chrome 优先 */}
+                        <source src="/videos/brand-loop-mobile-hq.webm" type="video/webm" />
+                        {/* H.264 540p：iOS Safari 兜底 */}
+                        <source src="/videos/brand-loop-mobile-540.mp4" type="video/mp4" />
+                      </>
+                    ) : (
+                      <source src="/videos/brand-loop-hq.mp4" type="video/mp4" />
+                    )}
+                  </video>
+                )}
               </div>
               <div className={`${styles.tile} ${styles.tileR}`}>
                 <Image
