@@ -1,84 +1,81 @@
-# HANDOFF — 官网风格改造交接（2026-08-07）
+# HANDOFF — Arxhe Associates 官网运维交接（2026-10-20 更新）
 
-> 换账号续作时请先读本文件。当前任务：把老板选定的「02 白廊·杂志编辑风」落到 Next.js 六页整站。
+> 换账号续作时请先读本文件。整站「02 白廊·杂志编辑风」改造已于 2026-08 完成并上线。本文件现以**部署架构与运维**为主。
 
-## 一、已确认决策
+## 一、站点与域名现状
 
-- **老板选定风格：02 白廊 · 杂志编辑风**（Gallery White Editorial）
-- 模板文件：`design-templates/l2-gallery-white-blue.html`（以此页为视觉基准）
-- 总览页：`design-templates/index.html`（6 套风格对比，含全部设计令牌）
-- 在线预览（老板看过并拍板）：`https://associates.arxhe.com/design-preview/`
+| 域名 | 内容 | 服务器 | 站点目录 |
+| --- | --- | --- | --- |
+| **www.arxhe.com / arxhe.com** | 本项目最新版（2026-10-20 起成为主域名） | arxhe-web001（34.129.216.236，australia-southeast2-a） | `/www/data/arxhe-associates/` |
+| **associates.arxhe.com** | 本项目同一构建（与主域名保持一致） | beiming-web（34.92.1.23，asia-east2-a） | `/web/arxhe-associates/` |
+| arxhe.com.au / www.arxhe.com.au | **老版 Vue 站（保留中，勿动）** | arxhe-web001 | `/www/data/arxhe2` |
+| api.arxhe.com / api.arxhe.com.au | 老站 Laravel 后端（保留中，勿动） | arxhe-web001 | `/www/data/arxhe_admin/public` |
 
-## 二、02 风格设计令牌（从 l2 模板提取）
+两个域名前置均为 Cloudflare 橙云代理；源站只有 80 端口，CF SSL 模式为 Flexible（回源明文 HTTP，历史遗留，待改进）。
 
-| 项 | 值 |
-| --- | --- |
-| 纸白底 | `#FAFAF8` |
-| 品牌蓝（点缀/关键字/编号/KPI） | `#003C60`（Logo 图形色） |
-| 墨色正文标题 | `#33302F`（Logo 字标暖灰系） |
-| 正文灰 | `rgba(51,48,47,.6)` |
-| 图注/辅助银灰 | `#9F9E9F`（Logo 副文字色） |
-| 细分隔线 | `rgba(51,48,47,.13)` |
-| 衬线字体栈 | `"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","SimSun",serif` |
-| 无衬线字体栈 | `"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif` |
+## 二、arxhe-web001 服务器要点（与其他机器都不一样）
 
-**版式语言（必须体现的特征）**：
-1. 通栏杂志封面式巨标题（衬线 200 极细字重，clamp 48–104px）
-2. 顶部 microlabel（10.5px / letter-spacing .44em / 大写英文 / 品牌蓝）+ 细线规则
-3. 首字下沉双栏简介（::first-letter 2.6em 品牌蓝下沉）
-4. 壹贰叁肆超大数字编号列表（中文数字，衬线 200，88px 级）
-5. 四栏刊物索引（顶部 2px 品牌蓝线 + PILLAR 01–04）
-6. 通栏图片带 + 浅色渐变蒙层 + 叠品牌蓝大 KPI（68% GGR）
-7. 图注规范：`FIG. 01` 编号 + 地点大写英文，10.5px letterspacing .3em 银灰
-8. 页脚：细线顶边 + logo + 银灰 letterspaced 链接
+- **nginx 是手编译的**：二进制 `/usr/local/nginx/sbin/nginx`，配置 `/usr/local/nginx/conf/nginx.conf` + `vhost/*.conf`（不是 /etc/nginx！）
+- 本站的 vhost：`/usr/local/nginx/conf/vhost/www.arxhe.com.conf`（仓库根目录有同名副本存档）
+- 改配置：`sudo /usr/local/nginx/sbin/nginx -t && sudo /usr/local/nginx/sbin/nginx -s reload`
+- 原配置备份：`vhost/www.arxhe.com.conf.bak-20261020`。**回滚 = 还原该文件 + reload**，老站文件 `/www/data/arxhe2` 未动过一个字节
+- nginx 配置含 `try_files $uri $uri.html $uri/ /404.html`（无后缀 URL 兼容）与 HTML `no-cache` 头
+- 机器上有 PHP-FPM（老站后端用），运行用户 www；磁盘 30G 余量约 6.6G
+- `/www/data/` 下有多个 `arxhe_2024xxxx` 历史目录，都是老站备份，可忽略
 
-## 三、实施计划（尚未开始改代码，分析已完成）
+## 三、访问凭据与通道
 
-技术栈：Next.js 15 App Router + TypeScript + CSS Modules，静态导出 `output:'export'` → `out/`。全站中英双语（`lib/i18n` + `lib/translations.ts`）。**内容红线：所有文案逐字取自 `lib/translations.ts`，不得改写增删**（CLAUDE.md §4）。
+- **gcloud**：`D:\GCCLI\google-cloud-sdk\bin`（不在 PATH，需 `export PATH="/d/GCCLI/google-cloud-sdk/bin:$PATH"`），项目 `inner-wares-307316`，账号 miles.jin@cxgrp.com。**授权会过期**，过期需重新 `gcloud auth login`（弹浏览器，需用户操作）
+- **beiming-web**：也可直接 `ssh miles_jin_cxgrp_com@beiming-web.asia-east2-a.inner-wares-307316`（~/.ssh/config 已配好）
+- **arxhe-web001**：只能走 `gcloud compute ssh arxhe-web001 --zone=australia-southeast2-a`（登录身份为 Administrator，有 sudo）；直接 ssh 密钥未授权
+- 文件传输：`gcloud compute scp <file> <host>:/home/<user>/`，Windows 版 pscp **不支持 `~`，必须写绝对路径**
 
-待改文件（按序）：
-
-1. `app/globals.css` — 加编辑风令牌：`--font-serif`、`--color-paper:#FAFAF8` 等；body 背景改纸白；标题色从品牌蓝改为 `#33302F`（品牌蓝仅作强调）
-2. `components/Header.module.css` — 纸白底 + 1px 细线底边、导航 12.5px letterspacing .16em、hover 品牌蓝；TSX 逻辑不动
-3. `components/Footer.module.css` — 细线顶边 + logo + 银灰 letterspaced 链接
-4. `components/PageHero.tsx` + `.module.css` — 去 HeroBackdrop 地籍背景，改：顶部 micro 行（左 ARXHE ASSOCIATES / 右 VOL. 类标签）+ 细线 + 极细衬线大标题 + 副标题 + 底细线
-5. `app/page.tsx` + `app/page.module.css` — **首页重点重制**，板块顺序沿用 CLAUDE.md §6.1 五板块，文案用 HOME/STRATEGY/ASSETS/PROJECT 翻译键：
-   - Hero：杂志封面式（顶部 micro+VOL. 细线行 → 通栏巨标题 → 底部左副文案 + 右 FIG.01 图）
-   - 简介：首字下沉 + 右侧 facts 表
-   - 三大优势/四大策略：超大中文数字编号列表
-   - 资产板块：四栏刊物索引
-   - CTA：通栏图片带叠 68% GGR 品牌蓝 KPI
-   - 首页 hero 不再用 `HeroBackdrop`（组件保留不删）
-6. 五个子页面（about/strategy/assets/project/investor）各有 `page.module.css`，跟随全局令牌 + PageHero 自动统一；个别深色/金色残留再微调
-
-**图片**：模板用的航拍图在仓库根目录（`bg-aerial-coastal.jpg` 等 4 张，已提交 git）。上线需拷贝到 `public/images/` 后用 `next/image` 引用（`images.unoptimized:true` 已配）。注意 `public/images/` 当前为空目录。
-
-**字体**：Google Fonts 在国内不稳定，不引外链 webfont，用上述系统衬线字体栈兜底。
-
-## 四、构建 / 部署 / 服务器
+## 四、部署流程（两个域名）
 
 ```bash
-npm run build   # 静态导出到 out/（postbuild 会拷 routes-manifest.json）
+npm run build   # 静态导出到 out/
+tar -czf /tmp/site.tar.gz -C out --exclude='./videos/brand-film.mp4' --exclude='./videos/brand-film-mobile.mp4' .
+# 长片 28MB 两台服务器都已有，跳过；视频有改动时不要排除
+
+# arxhe-web001（主域名）
+gcloud compute scp /tmp/site.tar.gz arxhe-web001:/home/Administrator/ --zone=australia-southeast2-a
+gcloud compute ssh arxhe-web001 --zone=australia-southeast2-a --command="sudo tar -xzf /home/Administrator/site.tar.gz -C /www/data/arxhe-associates/"
+
+# beiming-web（associates 子域名）
+gcloud compute scp /tmp/site.tar.gz beiming-web:/home/miles_jin_cxgrp_com/ --zone=asia-east2-a
+gcloud compute ssh beiming-web --zone=asia-east2-a --command="sudo tar -xzf /home/miles_jin_cxgrp_com/site.tar.gz -C /web/arxhe-associates/"
 ```
 
-部署目标：**beiming-web 服务器**（不要再用 arxhe-web001）：
+验证：
 
-- SSH：`miles_jin_cxgrp_com@34.92.1.23`，密钥 `~/.ssh/google_compute_engine`，known_hosts 用 `~/.ssh/google_compute_known_hosts`，`HostKeyAlias=compute.5683879411072502643`，`CheckHostIP=no`（完整 Host 配置见 `~/.ssh/config` 的 `beiming-web.asia-east2-a.inner-wares-307316`）
-- 域名：`associates.arxhe.com`（HTTP→HTTPS 301），nginx 配置 `/etc/nginx/conf.d/associates.arxhe.com.conf`
-- 站点根目录：`/web/arxhe-associates/`（现有正式站 = 上次部署的 out/ 内容；design-preview/ 子目录是本次模板预览）
-- 部署方式：本地 `npm run build` 后把 `out/` 内容 scp 到服务器临时目录，再 `sudo cp -r` 覆盖 `/web/arxhe-associates/` 对应文件（**保留 `design-preview/`、`bg-*.jpg`、`public/` 子目录不动**）
-- 验证：`curl -s -o /dev/null -w "%{http_code}" https://associates.arxhe.com/`
+```bash
+curl -s -o /dev/null -w "%{http_code}" https://www.arxhe.com/
+curl -s -o /dev/null -w "%{http_code}" https://associates.arxhe.com/
+```
 
-**注意**：SSH/scp 命令在客户端需要用户手动点批准，连续操作前先提醒用户。
+## 五、Cloudflare 缓存陷阱（重要）
 
-## 五、已完成与 git 状态
+- CF 默认按扩展名缓存 mp4/jpg/css/js，源站 `expires 30d` 让边缘缓存 30 天
+- **覆盖同名文件不会生效**（`cf-cache-status: HIT` 持续返回旧文件）
+- 对策（已建立惯例）：**改名的方式发布新静态资源**（如 `brand-loop-hq.mp4` → `brand-loop-mobile-540.mp4`），HTML 引用随之更新即可
+- HTML 已加 `Cache-Control: no-cache`，页面本身随时最新
+- 或在 CF 控制台手动 Purge Cache（需老板/运维的 CF 账号）
 
-- ✅ 全网调研（Awwwards/Sotheby's/Compass/Rockefeller/Village Properties/Webflow 模板）
-- ✅ 6 套浅色模板 + 总览页，commit `8d2b764` 已推送 GitHub `origin/main`
-- ✅ 部署预览到 `https://associates.arxhe.com/design-preview/`
-- ✅ 老板选定 02
-- ⬜ 整站改造（本文件第三节）→ 构建 → 部署 → 提交
+## 六、视频素材谱系（别再踩坑）
 
-## 六、续作第一句话
+| 文件 | 规格 | 说明 |
+| --- | --- | --- |
+| git 历史 `74fc8ce` 的 brand-loop.mp4 | 960x540 @ 5328kbps，30.5s | **循环片最高质量母版**（更高分辨率的源不存在，全域找过） |
+| git 历史 `74fc8ce` 的 brand-film.mp4 | 1280x720 @ 2665kbps，4m36s | 长片母版（101MB，含音轨） |
+| 现网 brand-loop-hq.mp4 | 540p 高码率无音轨 5.4MB | 桌面 Hero |
+| 现网 brand-loop-mobile-hq.webm | VP9 540p 1.96MB | 移动端（安卓/Chrome） |
+| 现网 brand-loop-mobile-540.mp4 | H.264 540p 2.67MB | 移动端 iOS 兜底 |
+| 老站 `/www/data/arxhe2/media/1.5f43bb30.mp4` | 同循环片母版 | 老 Vue 站原始素材 |
 
-「读取 HANDOFF.md，按第三节计划把 02 白廊杂志编辑风落到六页整站，先改 globals.css 和首页。」
+- 转码工具：`scripts/mp4info.py`（无 ffprobe 时解析分辨率/码率）；ffmpeg 可用 `npm i ffmpeg-static` 获取
+- 2026-08 的"性能优化"曾把循环片压到 322kbps 导致发糊，2026-10-20 已修复；**以后压缩视频不要低于 CRF 24**
+
+## 七、内容红线（仍然有效）
+
+- 所有页面文案逐字取自 `lib/translations.ts`，不得改写增删（详见 CLAUDE.md §4）
+- 禁止住宅/楼盘类配图话术；中英双语由 `lib/i18n.tsx` 切换
