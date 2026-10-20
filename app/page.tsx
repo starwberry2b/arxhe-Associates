@@ -103,7 +103,7 @@ export default function HomePage() {
                 {mounted && (
                   <video
                     ref={videoRef}
-                    poster="/images/brand-reel-poster-hd.jpg"
+                    poster="/images/brand-reel-poster-uhd.jpg"
                     autoPlay
                     muted
                     loop
