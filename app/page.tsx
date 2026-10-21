@@ -35,10 +35,16 @@ export default function HomePage() {
     if (!mounted) return;
     const v = videoRef.current;
     if (!v) return;
-    v.play().catch(() => { /* 被拦时等用户触碰 */ });
-    const resume = () => v.play().catch(() => {});
+    const tryPlay = () => v.play().catch(() => { /* 被拦时等用户触碰或 JSBridge */ });
+    tryPlay();
+    /* 微信专有：JSBridge 就绪后调用 play() 可绕过 X5 自动播放限制 */
+    document.addEventListener('WeixinJSBridgeReady', tryPlay);
+    const resume = () => tryPlay();
     document.addEventListener('touchstart', resume, { once: true });
-    return () => document.removeEventListener('touchstart', resume);
+    return () => {
+      document.removeEventListener('WeixinJSBridgeReady', tryPlay);
+      document.removeEventListener('touchstart', resume);
+    };
   }, [mounted]);
   /* 微信内核只给 MP4（对 webm 的兼容性声明不可靠） */
   const isWeChat = mounted && /MicroMessenger/i.test(navigator.userAgent);
@@ -103,33 +109,30 @@ export default function HomePage() {
                 {mounted && (
                   <video
                     ref={videoRef}
-                    poster="/images/brand-reel-poster-uhd.jpg"
+                    poster="/images/brand-cover-1080.jpg"
                     autoPlay
                     muted
                     loop
                     playsInline
                     {...{ 'x5-playsinline': 'true', 'webkit-playsinline': 'true', 'x5-video-player-type': 'h5-page' }}
                     preload="auto"
-                    onLoadedMetadata={(e) => {
-                      e.currentTarget.currentTime = 4;
-                    }}
                     onClick={(e) => e.currentTarget.play()}
                     aria-label="Arxhe Associates 品牌短片：墨尔本天际线、土地航拍与商务意象蒙太奇"
                     className={styles.tileVideo}
                   >
                     {isMobile ? (
                       isWeChat ? (
-                        <source src="/videos/brand-loop-mobile-540.mp4" type="video/mp4" />
+                        <source src="/videos/brand-loop-720.mp4" type="video/mp4" />
                       ) : (
                         <>
-                          {/* VP9 540p：同画质体积更小，安卓/Chrome 优先 */}
-                          <source src="/videos/brand-loop-mobile-hq.webm" type="video/webm" />
-                          {/* H.264 540p：iOS Safari 兜底 */}
-                          <source src="/videos/brand-loop-mobile-540.mp4" type="video/mp4" />
+                          {/* VP9 720p：同画质体积更小，安卓/Chrome 优先 */}
+                          <source src="/videos/brand-loop-720.webm" type="video/webm" />
+                          {/* H.264 720p：iOS Safari 兜底 */}
+                          <source src="/videos/brand-loop-720.mp4" type="video/mp4" />
                         </>
                       )
                     ) : (
-                      <source src="/videos/brand-loop-hq.mp4" type="video/mp4" />
+                      <source src="/videos/brand-loop-1080.mp4" type="video/mp4" />
                     )}
                   </video>
                 )}
